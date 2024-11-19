@@ -7,7 +7,7 @@
 		>
 			<div class="card__bucket-picture">
 				<img
-					src="../images/icons/bucket.svg"
+					src="@/images/icons/bucket.svg"
 					alt="Удалить товар"
 					class="card__bucketImage"
 				>
@@ -23,7 +23,7 @@
 			</div>
 			<div class="card__about">
 				<span class="card__title">{{ post.title }}</span>
-				<span class="card__text">{{ post.body }}</span>
+				<span class="card__text">{{ post.description }}</span>
 				<span class="card__price">{{ post.price }} <span> руб.</span></span>
 			</div>
 		</div>

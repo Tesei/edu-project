@@ -21,7 +21,6 @@
                     <my-select
                         v-model="selectedSortChild"
                         :options="sortOptions"
-                        v-model:order="selectedSortOrder"
                         class="header__select"
                     />
                 </div>
