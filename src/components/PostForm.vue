@@ -20,7 +20,7 @@
                     </my-input>
 
                     <my-textarea
-                        v-model.trim="post.body"
+                        v-model.trim="post.description"
                         :nameId="2"
                         :req="false"
                         :placeHolder="placeholders[1]"
@@ -76,7 +76,7 @@ export default {
         return {
             post: {
                 title: '',
-                body: '',
+                description: '',
                 image: '',
                 price: ''
             },
@@ -114,7 +114,7 @@ export default {
                 setTimeout(() => {
                     this.post = {
                         title: '',
-                        body: '',
+                        description: '',
                         image: '',
                         price: ''
                     },
@@ -149,7 +149,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/variables';
+ 
 .aside {
     background: #FFFEFB;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);

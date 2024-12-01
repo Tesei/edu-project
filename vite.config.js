@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import vue from '@vitejs/plugin-vue'
 import legacy from '@vitejs/plugin-legacy'
 import { fileURLToPath, URL } from 'node:url'
@@ -15,11 +15,12 @@ export default defineConfig({
     ],
     css: {
         preprocessorOptions: {
-          scss: {
-            // javascriptEnabled: true,
-            additionalData: `@use "@/styles/main.scss" as *;`,
-          }
-      },
+            scss: {
+                javascriptEnabled: true,
+                additionalData: `@use "@/styles/main.scss" as *;`,
+                api: 'modern-compiler',
+            },
+        },
     },
     resolve: {
         alias: {
@@ -28,6 +29,6 @@ export default defineConfig({
     },
     server: {
         port: 3000,
-        open: '/'
+        open: '/',
     },
 })

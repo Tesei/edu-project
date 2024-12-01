@@ -7,7 +7,7 @@
 		>
 			<div class="card__bucket-picture">
 				<img
-					src="@/images/icons/bucket.svg"
+					src="@/assets/images/icons/bucket.svg"
 					alt="Удалить товар"
 					class="card__bucketImage"
 				>
@@ -25,6 +25,7 @@
 				<span class="card__title">{{ post.title }}</span>
 				<span class="card__text">{{ post.description }}</span>
 				<span class="card__price">{{ post.price }} <span> руб.</span></span>
+				<my-button class="card__btn" @click="$emit('click-bye', post)">Купить</my-button>
 			</div>
 		</div>
 	</article>
@@ -118,7 +119,6 @@ export default {
 		word-wrap: break-word;
 		color: #3F3F3F;
 		padding: 16px 24px;
-		max-width: 300px;
 		display: flex;
 		flex-direction: column;
 
@@ -144,11 +144,11 @@ export default {
 		font-weight: 400;
 		font-size: 1.6rem;
 		line-height: 2rem;
-		margin-bottom: 32px;
+		margin-bottom: 20px;
 		flex: 1 0 auto;
 
 		@media (max-width: $md2) {
-			margin-bottom: 20px;
+			margin-bottom: 12px;
 		}
 	}
 
@@ -159,6 +159,18 @@ export default {
 		font-weight: 600;
 		font-size: 2.4rem;
 		line-height: 3rem;
+		margin-bottom: 16px;
+		flex: 1 0 auto;
+
+		@media (max-width: $md2) {
+			margin-bottom: 12px;
+		}
 	}
+
+	// card__btn
+	&__btn {
+		min-width: 100px;
+	}
+
 }
 </style>

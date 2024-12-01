@@ -30,12 +30,12 @@
 </template>
 
 <script setup>
-    import { defineModel } from 'vue'
+    import { ref } from 'vue'
 
     const searchPlaceholder = 'Поиск ...'
 
-    const searchQueryChild = defineModel('searchQueryChild')
-    const selectedSortChild = defineModel('selectedSortChild')
+    const searchQueryChild = ref('')
+    const selectedSortChild = ref('')
 
     const sortOptions = [
         { value: 'title', name: 'По названию' },
@@ -49,7 +49,7 @@
     lang="scss"
     scoped
 >
-@use '@/styles/variables';
+ 
     .header {
         margin: 31px 0px 16px 0px;
 
