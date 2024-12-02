@@ -6,9 +6,8 @@
           <post-item
             v-for="post in goodsList"
             :post="post"
-            :key="post.id"
-            @remove="$emit('remove', post)"
-            @click-bye="clickByePost = !clickByePost"
+            :key="post.id"            
+            @click-bye="cartStore.addToCartList"
           />
         </transition-group>
 
@@ -29,6 +28,8 @@ import { ref } from "vue";
 import PostItem from "@/components/PostItem.vue";
 import MyWrapperPopup from "@/components/UI/MyWrapperPopup.vue";
 import BuyForm from "@/components/BuyForm.vue";
+import { useCartStore } from "@/store/cart";
+const cartStore = useCartStore()
 
 const props = defineProps({
   goodsList: {
@@ -37,7 +38,6 @@ const props = defineProps({
   },
 });
 
-const clickByePost = ref(false);
 </script>
 
 <style lang="scss" scoped>

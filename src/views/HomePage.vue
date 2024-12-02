@@ -13,14 +13,13 @@
               {{ buttonFormOpenMessage ? "Закрыть форму" : "Открыть форму" }}
             </my-button>
             <my-dialog :show="dialogVisible" :showForm="animationDialog">
-              <post-form @create="goodsStore" />
+              <post-form @create="createPost" />
             </my-dialog>
           </div>
         </div>
 
         <post-list
-          :goodsList="sortedAndSearchedPosts"
-          @remove="goodsStore"
+          :goodsList="sortedAndSearchedPosts"          
           class="main__column main__column_right"
         />
       </div>
@@ -43,12 +42,7 @@ const selectedSort = ref("");
 
 function createPost(item) {
   console.log("Привет2", item);
-  // item.push(post)
-}
-function removePost(item) {
-  console.log("Привет", item);
-
-  // goods.value = item.filter((p) => p.id !== goods.id)
+  goodsStore.goods.push(item)
 }
 
 onBeforeMount(async () => {
