@@ -2,7 +2,7 @@
 <template>
     <div class="main__wrap">
         <div class="main__top">
-            <span class="main__bread-crumbs h6">Главная <span class="_arrow"></span>
+            <span class="main__bread-crumbs h6" @click="router.push({name: 'home'})">Главная <span class="_arrow"></span>
                 <span class="_active">Корзина</span>
             </span>
         </div>
@@ -17,7 +17,8 @@
 <script setup>
 import BucketListGoods from "@/components/BucketListGoods.vue";
 import BucketFinallyCheck from "@/components/BucketFinallyCheck.vue";
-
+import { useRouter } from 'vue-router';
+const router = useRouter()
 </script>
 
 

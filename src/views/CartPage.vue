@@ -1,6 +1,6 @@
 <template>
 	<div class="wrapper">
-		<header-bucket />
+		<header-wrapper />
 
 		<main class="main">
 			<div class="main__content _container">
@@ -16,7 +16,7 @@
 
 <script setup>
 	import BucketTwoColumn from '@/components/BucketTwoColumn.vue'
-	import HeaderBucket from '@/components/HeaderBucket.vue'
+	import HeaderWrapper from '@/components/HeaderWrapper.vue'
 </script>
 
 <style scoped lang="scss">

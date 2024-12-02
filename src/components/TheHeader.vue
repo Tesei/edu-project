@@ -24,6 +24,11 @@
                         class="header__select"
                     />
                 </div>
+
+                <the-bucket 
+                    class="header__column"
+                    @click="router.push({name: 'cartPage'})"
+                />
             </div>
         </div>
     </header>
@@ -31,6 +36,9 @@
 
 <script setup>
     import { ref } from 'vue'
+import TheBucket from '@/components/TheBucket.vue'; 
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
     const searchPlaceholder = 'Поиск ...'
 

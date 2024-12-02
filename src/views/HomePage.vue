@@ -13,7 +13,7 @@
               {{ buttonFormOpenMessage ? "Закрыть форму" : "Открыть форму" }}
             </my-button>
             <my-dialog :show="dialogVisible" :showForm="animationDialog">
-              <post-form @create="createPost" />
+              <post-form @create="goodsStore.createPost" />
             </my-dialog>
           </div>
         </div>
@@ -35,15 +35,8 @@ import PostList from "@/components/PostList.vue";
 import { useGoodsStore } from "@/store/goods.js";
 const goodsStore = useGoodsStore();
 
-const goodsList = computed(() => goodsStore.goods);
-
 const searchQuery = ref("");
 const selectedSort = ref("");
-
-function createPost(item) {
-  console.log("Привет2", item);
-  goodsStore.goods.push(item)
-}
 
 onBeforeMount(async () => {
   await goodsStore.fetchGoodsFromFakestore();
@@ -67,13 +60,13 @@ function openForm() {
 // todo доработать фильтрацию селекта
 const sortedPosts = computed(() => {
   if (selectedSort.value === "price-from-max")
-    return [...goodsList.value]
+    return [...goodsStore.goodsList]
       .sort((post1, post2) =>
         post1[selectedSort.value]?.localeCompare(post2[selectedSort.value])
       )
       .reverse();
   else
-    return [...goodsList.value].sort((post1, post2) =>
+    return [...goodsStore.goodsList].sort((post1, post2) =>
       post1[selectedSort.value]?.localeCompare(post2[selectedSort.value])
     );
 });

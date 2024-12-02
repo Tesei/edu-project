@@ -14,13 +14,13 @@ export const useCartStore = defineStore('cart', () => {
 	}
 
 	// Getters
-	const countOfGoodsNames = computed(() => {
+	const getCountOfGoodsNames = computed(() => {
 		return Object.keys(cartList).length
 	})
 
-	const countOfGoodsItems = computed(() => {
+	const getCountOfGoodsItems = computed(() => {
 		return Object.entries(cartList).reduce((acc, value) => acc + value[1], 0)
 	})
 
-	return { addToCartList, cartList, removeFromCartList, countOfGoodsNames, countOfGoodsItems }
+	return { addToCartList, cartList, removeFromCartList, getCountOfGoodsNames, getCountOfGoodsItems }
 })
