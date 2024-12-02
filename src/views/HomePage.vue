@@ -1,5 +1,5 @@
 <template>
-  <TheHeader
+  <the-header
     v-model:search-query-child="searchQuery"
     v-model:selected-sort-child="selectedSort"
   />

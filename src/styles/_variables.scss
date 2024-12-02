@@ -1,15 +1,16 @@
+@use 'sass:color';
 // Font
-$font-family-base: "Source Sans Pro";
-$font-family-accent: "Inter";
+$font-family-base: 'Source Sans Pro';
+$font-family-accent: 'Inter';
 $fontSize: 62.5%;
-$black:#000;
+$black: #000;
 
 // Границы адаптива ======================
 $minWidth: 320px; // Указываем минимальный размер экрана
 $maxWidth: 1440; // Указываем размер полотна
 $maxWidthContainer: 1440; // Указываем размер ограничивающего контейнера
 
-$md1: ($maxWidthContainer + 12)+ px;
+$md1: ($maxWidthContainer + 12) + px;
 $md2: 991.98px;
 $md3: 767.98px;
 $md4: 479.98px;
@@ -34,3 +35,13 @@ $md4: 479.98px;
 	}
 }
 //===============================================================
+$black: #1f2432;
+$white: white;
+$gray-txt: #797b86;
+$blue: #0069b4;
+$bgn: #f6f8fa;
+$gray-arrow: #90a2b5;
+
+$grey-color-light: color.adjust($gray-txt, $lightness: 15%, $space: hsl);
+$grey-color-strong: color.adjust($gray-txt, $lightness: 45%, $space: hsl);
+$bgn-color-darken: color.adjust($bgn, $lightness: -5%, $space: hsl);

@@ -1,14 +1,14 @@
 <template>
-  <div class="wrapper">
-    <RouterView />
-  </div>
+    <div class="wrapper">
+        <router-view />
+    </div>
 </template>
 
 <script setup>
-import HomePage from "@/views/HomePage.vue";
+    import { RouterView } from 'vue-router'
 </script>
 
 <style lang="scss">
-#app {
-}
+    #app {
+    }
 </style>

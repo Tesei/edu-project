@@ -15,7 +15,7 @@
           <div class="btns__amount btns__cube">{{ 0 }}</div>
           <button class="btns__plus btns__cube" @click="">+</button>
         </div>
-        <div class="btns__price-of-bit" v-if="item.amount > 1">0 ₽/шт.</div>
+        <div class="btns__price-of-bit" v-if="0 > 1">0 ₽/шт.</div>
       </div>
       <span class="goods__summ h3">0 ₽</span>
       <div class="goods__delete">
@@ -37,7 +37,6 @@ defineProps({
     required: true,
   },
 });
-export default {
   // computed: {
   //     itemImage() {
   //         if (!this.item.shortName) {
@@ -55,7 +54,6 @@ export default {
   //                 '.').split('').reverse().join('');
   //     },
   // }
-};
 </script>
 
 <style scoped lang="scss">
@@ -144,7 +142,7 @@ export default {
           height: 30px;
           top: -8px;
           left: -8.5px;
-          background-color: lighten($gray-txt, 45%);
+          background-color: $grey-color-strong;
           z-index: 1;
           border-radius: 50%;
         }
@@ -172,7 +170,7 @@ export default {
 
     @media (min-width: $md2) {
       &:hover {
-        background-color: darken($bgn, 5%);
+        background-color: $bgn-color-darken;
       }
     }
   }
@@ -188,7 +186,7 @@ export default {
 
     @media (min-width: $md2) {
       &:hover {
-        background-color: darken($bgn, 5%);
+        background-color: $bgn-color-darken;
       }
     }
   }
