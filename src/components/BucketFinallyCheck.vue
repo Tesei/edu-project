@@ -6,51 +6,51 @@
 					<span class="check__title h2">Итого</span>
 					<ul class="check__parametrs">
 						<li class="check__parametr-row row-1">
-							<span class="check__info text">Сумма заказа</span>
-							<div class="check__parametr">{{ 0 }} ₽</div>
+							<span class="check__info text">Стоимость товаров</span>
+							<div class="check__parametr">{{ totalSumOfGoodsWithSpace }} ₽</div>
 						</li>
 						<li class="check__parametr-row row-2">
 							<span class="check__info text">Количество</span>
-							<div class="check__parametr">{{ 0 }} шт</div>
+							<div class="check__parametr">{{ cartStore.getCountOfGoodsItems }} шт</div>
 						</li>
 						<li class="check__parametr-row row-3">
-							<span class="check__info text">Установка</span>
-							<div
-								v-if="!needInstallation"
-								class="check__parametr"
-							>
-								Нет
-							</div>
-							<div
-								v-else
+							<span class="check__info text">Необходима доставка</span>
+							<span
+								v-if="hasDeliveryFrom"
 								class="check__parametr"
 							>
 								Да
-							</div>
+							</span>
+							<span
+								v-else
+								class="check__parametr"
+							>
+								Нет
+							</span>
 						</li>
 					</ul>
 				</div>
 				<div class="check__text check__text_button">
 					<div class="check__summ-of-all-goods-row">
-						<span class="check__text-summ text">Стоимость товаров</span>
-						<div class="check__summ-amount-rub">{{ 0 }} ₽</div>
+						<span class="check__text-summ text">Сумма заказа</span>
+						<div class="check__summ-amount-rub">{{ totalSumOfGoodsAndServiceWithSpace }} ₽</div>
 					</div>
 				</div>
 				<div
 					class="check__buttons-row"
-					v-if="false"
+					v-if="true"
 				>
 					<my-button
 						class="btn check__btn check__btn_confirm"
 						@click=""
 						>Оформить заказ</my-button
 					>
-					<my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click"> Купить в 1 клик </my-button>
+					<!-- <my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click"> Купить в 1 клик </my-button> -->
 				</div>
-				<my-preloader
+				<!-- <my-preloader
 					v-else
 					class="check__data-send"
-				/>
+				/> -->
 
 				<transition-group name="check__data-send-message-anination">
 					<span
@@ -60,7 +60,7 @@
 					>
 					<span
 						class="check__data-send-message text"
-						v-else-if="true"
+						v-else-if="false"
 						>Заказ сформирован!</span
 					>
 				</transition-group>
@@ -69,7 +69,21 @@
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import {computed} from 'vue'
+import { useCartStore } from '@/store/cart'
+const cartStore = useCartStore()
+
+const totalSumOfGoodsWithSpace = computed(() => {
+	return cartStore.getTotalSumOfGoods.toLocaleString("ru-RU")
+})
+const totalSumOfGoodsAndServiceWithSpace = computed(() => {
+	return cartStore.getTotalSumOfGoodsAndService.toLocaleString("ru-RU")
+})
+const hasDeliveryFrom = computed(() => {
+	return cartStore.hasDelivery
+})
+</script>
 
 <style scoped lang="scss">
 	.main {

@@ -2,28 +2,28 @@
   <li class="goods__item">
     <div class="goods__row">
       <div class="goods__image-wrap _ibg">
-        <img :src="itemImage" :alt="item.shortName" class="goods__image" />
+        <img :src="props.item.image" :alt="props.item.title" class="goods__image" />
       </div>
       <ul class="goods__text-about">
-        <li class="goods__title text">название</li>
-        <li class="goods__parametrs text">о товаре</li>
-        <li class="goods__article text">Артикул: 00</li>
+        <li class="goods__title text">{{ props.item.title }}</li>
+        <li class="goods__parametrs text"> {{ props.item.description }}</li>
+        <li class="goods__article text">Артикул: {{ props.item.id }}</li>
       </ul>
       <div class="goods__amount-btns btns">
         <div class="btns__row">
-          <button class="btns__minus btns__cube" @click="">-</button>
-          <div class="btns__amount btns__cube">{{ 0 }}</div>
-          <button class="btns__plus btns__cube" @click="">+</button>
+          <button class="btns__minus btns__cube" @click="cartStore.removeFromCartList(props.item)">-</button>
+          <div class="btns__amount btns__cube">{{ count }}</div>
+          <button class="btns__plus btns__cube" @click="cartStore.addToCartList(props.item)">+</button>
         </div>
-        <div class="btns__price-of-bit" v-if="0 > 1">0 ₽/шт.</div>
+        <div class="btns__price-of-bit" v-if="props.item.price">{{ priceItemWithSpace }} ₽/шт.</div>
       </div>
-      <span class="goods__summ h3">0 ₽</span>
+      <span class="goods__summ h3">{{ sum }} ₽</span>
       <div class="goods__delete">
         <img
           src="@/assets/images/icons/close.svg"
           alt="Удалить товар"
           class="goods__delete-image"
-          @click=""
+          @click="cartStore.cleanItemFromBucket(props.item)"
         />
       </div>
     </div>
@@ -31,29 +31,27 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import { useCartStore } from '@/store/cart'
+const cartStore = useCartStore()
+
+const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
-});
-  // computed: {
-  //     itemImage() {
-  //         if (!this.item.shortName) {
-  //             return
-  //         }
-  //         const fileName = this.item.shortName.toLowerCase();
-  //         return require(`../images/${fileName}.png`);
-  //     },
-  //     summItemWithSpace() {
-  //         return this.item.summ.toLocaleString("ru-RU");
-  //     },
-  //     priceItemWithSpace() {
-  //         return this.item.price.toString().replace(/[^\d.,]/g,
-  //             '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g,
-  //                 '.').split('').reverse().join('');
-  //     },
-  // }
+})
+const count = computed(() => cartStore.cartList[props.item.title])
+const sum = computed(() => {  
+  let price = props.item.price
+  if (typeof price === 'string') price = Number(price.replaceAll(' ', ''))
+  return (count.value * price).toLocaleString("ru-RU")
+})
+const priceItemWithSpace = computed (() => {
+  if (typeof props.item.price === 'number') return props.item.price.toLocaleString("ru-RU")
+  else return props.item.price
+})
+
 </script>
 
 <style scoped lang="scss">

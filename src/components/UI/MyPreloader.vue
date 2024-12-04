@@ -11,16 +11,11 @@
 </template>
 
 
-<script>
+<script setup>
 
-export default {
-    name: 'my-preloader',
-}
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/_colors.scss';
-
 
 .lazy-load {
     display: none;

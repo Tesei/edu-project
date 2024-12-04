@@ -3,12 +3,12 @@
 		<div class="main__text">
 			<div class="main__text-left-side">
 				<h1 class="main__title">Ваша корзина</h1>
-				<span class="main__amount-of-goods"> количе товара</span>
+				<span class="main__amount-of-goods"> {{ cartStore.getCountOfGoodsNames }} товара</span>
 			</div>
 			<div class="main__text-right-side">
 				<button
 					class="main__clear-bucket"
-					@click=""
+					@click="cartStore.cleanBucket"
 				>
 					Очистить корзину
 				</button>
@@ -17,22 +17,49 @@
 
 		<div
 			class="main__goods-wrap"
-			v-if="true"
+			v-if="hasGoods"
 		>
 			<ul class="main__goods-items goods">
 				<transition-group name="post-list">
 					<bucket-list-goods-item
-						v-for="item in goodsForBuy"
+						v-for="item in findFullInfoAboutGoods"
 						:item="item"
 						:key="item.id"
 					/>
 				</transition-group>
 			</ul>
+			<div class="main__installation installation">
+
+<input
+	id="installationCheck"
+	class="installation__check-input"
+	type="checkbox"
+	value="true"
+	@change="cartStore.changeDelivery"
+>
+<label
+	class="installation__check-label"
+	for="installationCheck"
+></label>
+
+<div class="installation__image-wrap">
+	<img
+		src="@/assets/images/icons/tools.svg"
+		alt="installation"
+		class="installation__image"
+	>
+</div>
+<div class="installation__text">
+	<span class="installation__title">Доставка</span>
+	<span class="installation__about">Отметьте, если Вам необходима доставка товаров</span>
+</div>
+
+</div>
 		</div>
-		<my-preloader
+		<!-- <my-preloader
 			v-else-if="false"
 			class="main__goods-preloader"
-		/>
+		/> -->
 		<span
 			class="main__goods-wrap-without-goods h2"
 			v-else
@@ -42,9 +69,22 @@
 </template>
 
 <script setup>
-import BucketListGoodsItem from '@/components/BucketListGoodsItem.vue'
+	import { computed } from 'vue'
+	import BucketListGoodsItem from '@/components/BucketListGoodsItem.vue'
+	import { useCartStore } from '@/store/cart'
+	import { useGoodsStore } from '@/store/goods'
+	const cartStore = useCartStore()
+	const goodsStore = useGoodsStore()
 
-	const goodsForBuy = []
+	const hasGoods = computed(() => Object.keys(cartStore.cartList).length > 0)
+const findFullInfoAboutGoods = computed(() => {
+		const result = []
+		Object.entries(cartStore.cartList).forEach((arr) => {
+			let place = goodsStore.goods.filter((item) => item.title === arr[0])[0]
+			if (typeof place === 'object') result.push(place)
+		})
+		return result
+	})
 </script>
 
 <style scoped lang="scss">
