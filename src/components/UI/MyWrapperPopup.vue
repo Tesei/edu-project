@@ -42,6 +42,7 @@
 * пропс на наличие закрывающей иконки
 * наполнение через слоты
 */
+defineEmits(['close'])
 const props = defineProps({
     hasCloseIcon: {
         type: Boolean,
@@ -49,7 +50,6 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['close'])
 </script>
 
 <style scoped lang="scss">
@@ -63,6 +63,7 @@ const emit = defineEmits(['close'])
     top: 0;
     width: 100%;
     z-index: 2000;
+    
   }
 
   // .ui-pop-up__content
@@ -76,6 +77,7 @@ const emit = defineEmits(['close'])
     transform: translate(-50%, -50%);
     max-height: 90%;
     overflow-y: auto;
+    padding: 24px;
   }
 
   // .ui-pop-up__header

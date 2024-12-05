@@ -36,34 +36,16 @@
 						<div class="check__summ-amount-rub">{{ totalSumOfGoodsAndServiceWithSpace }} ₽</div>
 					</div>
 				</div>
-				<div
-					class="check__buttons-row"
-					v-if="true"
-				>
+				<div class="check__buttons-row" >
 					<my-button
 						class="btn check__btn check__btn_confirm"
-						@click=""
+						:hasAllData="cartStore.getCountOfGoodsNames > 0"
+						@click="cartStore.changeVisibleClientForm"
 						>Оформить заказ</my-button
 					>
 					<!-- <my-button class="btn btn_color-reverse check__btn check__btn_buy-in-one-click"> Купить в 1 клик </my-button> -->
 				</div>
-				<!-- <my-preloader
-					v-else
-					class="check__data-send"
-				/> -->
 
-				<transition-group name="check__data-send-message-anination">
-					<span
-						class="check__data-send-message text"
-						v-if="false"
-						>Во время отправки данных произошёл сбой! Попробуйте оформить заказ заново.</span
-					>
-					<span
-						class="check__data-send-message text"
-						v-else-if="false"
-						>Заказ сформирован!</span
-					>
-				</transition-group>
 			</div>
 		</div>
 	</div>

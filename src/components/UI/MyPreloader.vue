@@ -11,8 +11,10 @@
 </template>
 
 
-<script setup>
-
+<script>
+export default {
+    name: 'my-preloader',
+}
 </script>
 
 <style scoped lang="scss">
@@ -54,7 +56,7 @@
     &_two,
     &_three {
         border-radius: 3px;
-        background-color: $blue;
+        background-color: $green;
         width: 22%;
         animation-duration: 0.5s;
         animation-timing-function: linear;

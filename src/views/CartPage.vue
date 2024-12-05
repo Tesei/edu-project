@@ -7,15 +7,31 @@
 			</div>
 		</main>
 		<footer class="footer">
-			<div class="footer__content _container">
-			</div>
+			<div class="footer__content _container"></div>
 		</footer>
 	</div>
+	<my-wrapper-popup
+		class="goods__form-buy"
+		v-if="showForm"
+		@close="cartStore.changeVisibleClientForm"
+	>
+		<template #header> Форма данных клиента </template>
+		<template #default>
+			<buy-form></buy-form>
+		</template>
+	</my-wrapper-popup>
 </template>
 
 <script setup>
-import BucketTwoColumn from '@/components/BucketTwoColumn.vue'
-import TheHeader from '@/components/TheHeader.vue'
+	import MyWrapperPopup from '@/components/UI/MyWrapperPopup.vue'
+	import BuyForm from '@/components/BuyForm.vue'
+	import BucketTwoColumn from '@/components/BucketTwoColumn.vue'
+	import TheHeader from '@/components/TheHeader.vue'
+	import { useCartStore } from '@/store/cart'
+	const cartStore = useCartStore()
+	import { computed } from 'vue'
+
+	const showForm = computed(() => cartStore.showClientForm)
 </script>
 
 <style scoped lang="scss">

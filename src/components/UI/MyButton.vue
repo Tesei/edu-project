@@ -4,6 +4,7 @@
             type="submit"
             class="btn"
             :class="{'_active': hasAllData }"
+            :disabled="!hasAllData"
         >
             <slot></slot>
         </button>

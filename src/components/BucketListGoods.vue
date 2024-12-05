@@ -34,7 +34,7 @@
 	id="installationCheck"
 	class="installation__check-input"
 	type="checkbox"
-	value="true"
+	:value="cartStore.hasDelivery"
 	@change="cartStore.changeDelivery"
 >
 <label

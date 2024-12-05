@@ -10,13 +10,6 @@
             @click-bye="cartStore.addToCartList"
           />
         </transition-group>
-
-        <!-- <my-wrapper-popup class="goods__form-buy">
-          <template #header> Форма данных клиента </template>
-          <template #default>
-            <buy-form></buy-form>
-          </template>
-        </my-wrapper-popup> -->
       </div>
       <span v-else class="goods__text">Загружаем список товаров ...</span>
     </div>
@@ -24,10 +17,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import PostItem from '@/components/PostItem.vue'
-import MyWrapperPopup from '@/components/UI/MyWrapperPopup.vue'
-import BuyForm from '@/components/BuyForm.vue'
 import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
 

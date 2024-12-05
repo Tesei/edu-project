@@ -43,7 +43,7 @@
             v-else
             type="text"
             class="input"
-            :value="modelValue.trim()"
+            :value="modelValue"
             @input="updateInput"
             :class="{ '_req': req, '_active': checkDataValue, '_error': showError }"
             :id="nameId"
