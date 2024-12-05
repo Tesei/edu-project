@@ -7,11 +7,11 @@ import MyPreloader from '@/components/UI/MyPreloader.vue'
 // import MyWrapperPopup from "@/components/UI/MyWrapperPopup.vue";
 
 export default [
-	MySelect,
-	MyInput,
-	MyButton,
-	MyTextarea,
-	MyDialog,
-	MyPreloader,
-	// MyWrapperPopup
+    MySelect,
+    MyInput,
+    MyButton,
+    MyTextarea,
+    MyDialog,
+    MyPreloader,
+    // MyWrapperPopup
 ]

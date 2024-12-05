@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import TheBucket from '@/components/TheBucket.vue';
+import TheBucket from '@/components/TheBucket.vue'
 </script>
 
 <style scoped lang="scss">

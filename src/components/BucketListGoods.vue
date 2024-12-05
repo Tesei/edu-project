@@ -69,22 +69,22 @@
 </template>
 
 <script setup>
-	import { computed } from 'vue'
-	import BucketListGoodsItem from '@/components/BucketListGoodsItem.vue'
-	import { useCartStore } from '@/store/cart'
-	import { useGoodsStore } from '@/store/goods'
-	const cartStore = useCartStore()
-	const goodsStore = useGoodsStore()
+import { computed } from 'vue'
+import BucketListGoodsItem from '@/components/BucketListGoodsItem.vue'
+import { useCartStore } from '@/store/cart'
+import { useGoodsStore } from '@/store/goods'
+const cartStore = useCartStore()
+const goodsStore = useGoodsStore()
 
-	const hasGoods = computed(() => Object.keys(cartStore.cartList).length > 0)
+const hasGoods = computed(() => Object.keys(cartStore.cartList).length > 0)
 const findFullInfoAboutGoods = computed(() => {
-		const result = []
-		Object.entries(cartStore.cartList).forEach((arr) => {
-			let place = goodsStore.goods.filter((item) => item.title === arr[0])[0]
-			if (typeof place === 'object') result.push(place)
-		})
-		return result
-	})
+    const result = []
+    Object.entries(cartStore.cartList).forEach((arr) => {
+        let place = goodsStore.goods.filter((item) => item.title === arr[0])[0]
+        if (typeof place === 'object') result.push(place)
+    })
+    return result
+})
 </script>
 
 <style scoped lang="scss">

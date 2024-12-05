@@ -38,15 +38,15 @@ import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
 
 const props = defineProps({
-	post: {
-			type: Object,
-			required: true
-		}
+    post: {
+        type: Object,
+        required: true
+    }
 })
 
 const hasInCart = computed(() => {
-	if (cartStore.cartList.hasOwnProperty(props.post.title)) return 'В корзине ' + cartStore.cartList[props.post.title]
-	else return 'В корзину'
+    if (cartStore.cartList.hasOwnProperty(props.post.title)) return 'В корзине ' + cartStore.cartList[props.post.title]
+    else return 'В корзину'
 })
 
 </script>

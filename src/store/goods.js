@@ -110,7 +110,7 @@ export const useGoodsStore = defineStore(
 			goods.value.push(item)
 		}
 		function removePost(item) {
-			goods.value = item.filter((p) => p.id !== goods.id)
+			goods.value = item.filter((p) => p.id !== goods.value.id)
 		}
 
 		return {

@@ -28,58 +28,58 @@
 </template>
 
 <script setup>
-import { ref, computed, onBeforeMount } from "vue";
-import TheHeader from "@/components/TheHeader.vue";
-import PostForm from "@/components/PostForm.vue";
-import PostList from "@/components/PostList.vue";
-import { useGoodsStore } from "@/store/goods.js";
-const goodsStore = useGoodsStore();
+import { ref, computed, onBeforeMount } from 'vue'
+import TheHeader from '@/components/TheHeader.vue'
+import PostForm from '@/components/PostForm.vue'
+import PostList from '@/components/PostList.vue'
+import { useGoodsStore } from '@/store/goods.js'
+const goodsStore = useGoodsStore()
 
-const searchQuery = ref("");
-const selectedSort = ref("");
+const searchQuery = ref('')
+const selectedSort = ref('')
 
 onBeforeMount(async () => {
-  await goodsStore.fetchGoodsFromFakestore();
-});
+    await goodsStore.fetchGoodsFromFakestore()
+})
 
 // открытие - закрытие формы и анимация
-const dialogVisible = ref(true);
-const animationDialog = ref(true);
-const buttonFormOpenMessage = ref(true);
+const dialogVisible = ref(true)
+const animationDialog = ref(true)
+const buttonFormOpenMessage = ref(true)
 function openForm() {
-  if (dialogVisible.value) {
-    setTimeout(() => {
-      dialogVisible.value = false;
-    }, 400);
-    animationDialog.value = buttonFormOpenMessage.value = false;
-  } else {
-    dialogVisible.value = animationDialog.value = buttonFormOpenMessage.value = true;
-  }
+    if (dialogVisible.value) {
+        setTimeout(() => {
+            dialogVisible.value = false
+        }, 400)
+        animationDialog.value = buttonFormOpenMessage.value = false
+    } else {
+        dialogVisible.value = animationDialog.value = buttonFormOpenMessage.value = true
+    }
 }
 
 // todo доработать фильтрацию селекта
 const sortedPosts = computed(() => {
-  if (selectedSort.value === "price-from-max")
-    return [...goodsStore.goodsList]
-      .sort((post1, post2) =>
-        post1[selectedSort.value]?.localeCompare(post2[selectedSort.value])
-      )
-      .reverse();
-  else
-    return [...goodsStore.goodsList].sort((post1, post2) =>
-      post1[selectedSort.value]?.localeCompare(post2[selectedSort.value])
-    );
-});
+    if (selectedSort.value === 'price-from-max')
+        return [...goodsStore.goodsList]
+            .sort((post1, post2) =>
+                post1[selectedSort.value]?.localeCompare(post2[selectedSort.value])
+            )
+            .reverse()
+    else
+        return [...goodsStore.goodsList].sort((post1, post2) =>
+            post1[selectedSort.value]?.localeCompare(post2[selectedSort.value])
+        )
+})
 
 const sortedAndSearchedPosts = computed(() => {
-  const serchText = searchQuery.value.toLowerCase();
-  return sortedPosts.value.filter(
-    (post) =>
-      post.title?.toLowerCase().includes(serchText) ||
+    const serchText = searchQuery.value.toLowerCase()
+    return sortedPosts.value.filter(
+        (post) =>
+            post.title?.toLowerCase().includes(serchText) ||
       post.description?.toLowerCase().includes(serchText) ||
       post.price?.toLowerCase().includes(serchText)
-  );
-});
+    )
+})
 </script>
 
 <style lang="scss" scoped>

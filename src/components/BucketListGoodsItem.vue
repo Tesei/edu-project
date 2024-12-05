@@ -36,20 +36,20 @@ import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
 
 const props = defineProps({
-  item: {
-    type: Object,
-    required: true,
-  },
+    item: {
+        type: Object,
+        required: true,
+    },
 })
 const count = computed(() => cartStore.cartList[props.item.title])
 const sum = computed(() => {  
-  let price = props.item.price
-  if (typeof price === 'string') price = Number(price.replaceAll(' ', ''))
-  return (count.value * price).toLocaleString("ru-RU")
+    let price = props.item.price
+    if (typeof price === 'string') price = Number(price.replaceAll(' ', ''))
+    return (count.value * price).toLocaleString('ru-RU')
 })
 const priceItemWithSpace = computed (() => {
-  if (typeof props.item.price === 'number') return props.item.price.toLocaleString("ru-RU")
-  else return props.item.price
+    if (typeof props.item.price === 'number') return props.item.price.toLocaleString('ru-RU')
+    else return props.item.price
 })
 
 </script>

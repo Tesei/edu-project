@@ -87,27 +87,27 @@ export default {
                 'Введите ссылку',
                 'Введите цену'
             ],
-            dataError: "Поле является обязательным",
+            dataError: 'Поле является обязательным',
             clickButton: false,
         }
     },
     watch: {
         somePrice(newPrice) {
-            this.post.price = newPrice.replace(/[^\d.,]/g, '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g, '.').split('').reverse().join('');
+            this.post.price = newPrice.replace(/[^\d.,]/g, '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g, '.').split('').reverse().join('')
         }
     },
     computed: {
         checkAllData() {
-            if (this.post.title && this.post.image && this.post.price) return true;
+            if (this.post.title && this.post.image && this.post.price) return true
             else return false
         }
     },
     methods: {
         createPost() {
-            let btnSend = document.querySelector('.aside__form .btn');
-            if (btnSend.classList.contains("_active")) {
+            let btnSend = document.querySelector('.aside__form .btn')
+            if (btnSend.classList.contains('_active')) {
 
-                this.post.id = Date.now();
+                this.post.id = Date.now()
                 // Отправляем данные в родительский компонент:
                 this.$emit('create', this.post)
                 // после отправки данных очищаем поля инпута:
@@ -118,31 +118,31 @@ export default {
                         image: '',
                         price: ''
                     },
-                        this.somePrice = '';
-                    this.clickButton = false;
+                    this.somePrice = ''
+                    this.clickButton = false
                 }, 300)
             }
-            else this.clickButton = true;
+            else this.clickButton = true
         },
         thousandSeparator(str) {
             var parts = (str + '').split('.'),
                 main = parts[0],
                 len = main.length,
                 output = '',
-                i = len - 1;
+                i = len - 1
 
             while (i >= 0) {
-                output = main.charAt(i) + output;
+                output = main.charAt(i) + output
                 if ((len - i) % 3 === 0 && i > 0) {
-                    output = ' ' + output;
+                    output = ' ' + output
                 }
-                --i;
+                --i
             }
 
             if (parts.length > 1) {
-                output += '.' + parts[1];
+                output += '.' + parts[1]
             }
-            return output;
+            return output
         }
     }
 }

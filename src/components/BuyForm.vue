@@ -62,21 +62,21 @@
 
 <script setup>
 const props = defineProps({
-  formData: {
-    name: "",
-    birthDate: "",
-    adress: {
-      city: "",
-      street: "",
-      home: "",
+    formData: {
+        name: '',
+        birthDate: '',
+        adress: {
+            city: '',
+            street: '',
+            home: '',
+        },
+        bankCardData: {
+            number: null,
+            usessBefore: '',
+        },
+        agreement: false,
     },
-    bankCardData: {
-      number: null,
-      usessBefore: "",
-    },
-    agreement: false,
-  },
-});
+})
 </script>
 
 <style lang="scss" scoped>

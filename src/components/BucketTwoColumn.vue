@@ -15,9 +15,9 @@
 
 
 <script setup>
-import BucketListGoods from "@/components/BucketListGoods.vue";
-import BucketFinallyCheck from "@/components/BucketFinallyCheck.vue";
-import { useRouter } from 'vue-router';
+import BucketListGoods from '@/components/BucketListGoods.vue'
+import BucketFinallyCheck from '@/components/BucketFinallyCheck.vue'
+import { useRouter } from 'vue-router'
 const router = useRouter()
 </script>
 

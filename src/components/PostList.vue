@@ -24,19 +24,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import PostItem from "@/components/PostItem.vue";
-import MyWrapperPopup from "@/components/UI/MyWrapperPopup.vue";
-import BuyForm from "@/components/BuyForm.vue";
-import { useCartStore } from "@/store/cart";
+import { ref } from 'vue'
+import PostItem from '@/components/PostItem.vue'
+import MyWrapperPopup from '@/components/UI/MyWrapperPopup.vue'
+import BuyForm from '@/components/BuyForm.vue'
+import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
 
 const props = defineProps({
-  goodsList: {
-    type: Array,
-    required: true,
-  },
-});
+    goodsList: {
+        type: Array,
+        required: true,
+    },
+})
 
 </script>
 

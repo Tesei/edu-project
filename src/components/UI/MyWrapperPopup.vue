@@ -43,13 +43,13 @@
 * наполнение через слоты
 */
 const props = defineProps({
-  hasCloseIcon: {
-    type: Boolean,
-    default: true,
-  },
-});
+    hasCloseIcon: {
+        type: Boolean,
+        default: true,
+    },
+})
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close'])
 </script>
 
 <style scoped lang="scss">

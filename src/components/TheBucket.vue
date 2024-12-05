@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
-	import { useCartStore } from '@/store/cart'
-	const cartStore = useCartStore()
+import { useCartStore } from '@/store/cart'
+const cartStore = useCartStore()
 </script>
 
 <style scoped lang="scss">

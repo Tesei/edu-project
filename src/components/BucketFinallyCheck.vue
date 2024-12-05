@@ -75,13 +75,13 @@ import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
 
 const totalSumOfGoodsWithSpace = computed(() => {
-	return cartStore.getTotalSumOfGoods.toLocaleString("ru-RU")
+    return cartStore.getTotalSumOfGoods.toLocaleString('ru-RU')
 })
 const totalSumOfGoodsAndServiceWithSpace = computed(() => {
-	return cartStore.getTotalSumOfGoodsAndService.toLocaleString("ru-RU")
+    return cartStore.getTotalSumOfGoodsAndService.toLocaleString('ru-RU')
 })
 const hasDeliveryFrom = computed(() => {
-	return cartStore.hasDelivery
+    return cartStore.hasDelivery
 })
 </script>
 

@@ -106,12 +106,12 @@ export default {
     },
     computed: {
         checkDataValue() {
-            if (this.modelValue) return true;
-            else return false;
+            if (this.modelValue) return true
+            else return false
         },
         showError() {
-            if (this.clickButton && this.modelValue == false) return true;
-            else return false;
+            if (this.clickButton && this.modelValue == false) return true
+            else return false
         },
     }
 }

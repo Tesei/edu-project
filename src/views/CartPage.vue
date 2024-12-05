@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-	import BucketTwoColumn from '@/components/BucketTwoColumn.vue'
-	import HeaderWrapper from '@/components/HeaderWrapper.vue'
+import BucketTwoColumn from '@/components/BucketTwoColumn.vue'
+import HeaderWrapper from '@/components/HeaderWrapper.vue'
 </script>
 
 <style scoped lang="scss">

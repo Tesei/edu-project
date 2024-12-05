@@ -40,7 +40,7 @@ export default {
         req: {
             type: Boolean,
             required: true,
-            default: () => ""
+            default: () => ''
         },
         placeHolder: {
             type: [String, Number],

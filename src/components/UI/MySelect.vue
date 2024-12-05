@@ -36,8 +36,8 @@ export default {
     },
     methods: {
         changeOption(event) {
-            this.$emit("update:modelValue", event.target.value);
-            this.$emit("update:order", event.target.selectedIndex);
+            this.$emit('update:modelValue', event.target.value)
+            this.$emit('update:order', event.target.selectedIndex)
         }
     }
 }
