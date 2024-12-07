@@ -34,7 +34,7 @@
 					class="form__adress"
 					v-show="cartStore.hasDelivery"
 				>
-					<span>Адрес:</span>
+					<span class="form__subtitle">Адрес:</span>
 					<my-input
 						v-model.trim="formData.adress.city"
 						:nameId="3"
@@ -70,6 +70,7 @@
 					</my-input>
 				</div>
 
+				<span class="form__subtitle">Банковские реквизиты:</span>
 				<div class="form__banking">
 					<my-input
 						v-model.trim="formData.bankCardData.number"
@@ -95,18 +96,12 @@
 					</my-input>
 				</div>
 
-				<input
-					id="installationCheck"
-					class="form__input"
-					type="checkbox"
-					:value="formData.agreement"
-					@change="formData.agreement = !formData.agreement"
-				/>
-				<label
-					class="form__input-label"
-					for="installationCheck"
-					>Соглашение об обработке персональных данных</label
+				<my-checkbox 
+				class="form__input"
+				v-model="formData.agreement"
 				>
+					Соглашение об обработке персональных данных
+			</my-checkbox>
 
 				<my-button
 					@click="sendOrder"
@@ -139,7 +134,8 @@
 </template>
 
 <script setup>
-	import { reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
+	import MyCheckbox from '@/components/ui/MyCheckbox.vue'
 	import { useCartStore } from '@/store/cart'
 	const cartStore = useCartStore()
 
@@ -189,6 +185,11 @@
 		// .form__input
 		&__input {
 			margin-bottom: 20px;
+		}
+		// .form__subtitle
+		&__subtitle {
+			display: inline-block;
+			margin-bottom: 10px;
 		}
 
 		// .form__adress
