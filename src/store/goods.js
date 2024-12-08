@@ -75,17 +75,11 @@ export const useGoodsStore = defineStore(
 		])
 		const defaultImageLink = "https://tesei.github.io/sites/mockUp's/polaroid.jpg"
 
-		// Getters
-		// Так мы создаём гетеры (компьютед свойства):
-		// const watchedMovies = computed(() => {
-		// return movies.value.filter( (el:MovieItem) => el.isWatched)
-		// })
-
 		// Actions
 		const fetchGoodsFromFakestore = async () => {
 			try {
 				let { data } = await axios.get('https://fakestoreapi.com/products', {
-					timeout: 2000,
+					timeout: 4000,
 				})
 				//         {
 				//     "id": 1,

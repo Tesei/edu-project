@@ -36,7 +36,8 @@
 </template>
 
 <script setup>
-	import { ref } from 'vue'
+import { ref } from 'vue'
+	import MyInput from '@/components/UI/MyInput.vue'
 	import TheBucket from '@/components/TheBucket.vue'
 	import { useRouter } from 'vue-router'
 	const router = useRouter()

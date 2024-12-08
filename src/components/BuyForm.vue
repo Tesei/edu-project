@@ -135,7 +135,9 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-	import MyCheckbox from '@/components/ui/MyCheckbox.vue'
+import MyCheckbox from '@/components/ui/MyCheckbox.vue'
+import MyInput from '@/components/UI/MyInput.vue'
+	
 	import { useCartStore } from '@/store/cart'
 	const cartStore = useCartStore()
 

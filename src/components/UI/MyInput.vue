@@ -13,9 +13,8 @@
             v-if="oninpShow"
             type="text"
             class="input"
-            :value="modelValue"
-            @input="updateInputWithWhiteSpace"
-            :class="{ '_req': req, '_active': checkDataValue, '_error': showError }"
+            :class="{ '_req': req, '_active': inputValue, '_error': showError }"
+            v-model="inputValue"
             :id="nameId"
             autocomplete="off"
             name="form[]"
@@ -23,29 +22,12 @@
             :placeholder="placeHolder"
             :data-error="dataError"
         >
-        <!-- <input
-            v-if="oninpShow"
-            type="text"
-            class="input"
-            :value="modelValue"
-            @input="updateInput"
-            :class="{ '_req': req, '_active': checkDataValue, '_error': showError }"
-            :id="nameId"
-            autocomplete="off"
-            name="form[]"
-            data-value=""
-            :placeholder="placeHolder"
-            :data-error="dataError"
-            oninput="this.value = this.value.replace(/[^\d.,]/g, '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g, '.').split('').reverse().join('').trim()"
-        > -->
-
         <input
             v-else
             type="text"
             class="input"
-            :value="modelValue"
-            @input="updateInput"
-            :class="{ '_req': req, '_active': checkDataValue, '_error': showError }"
+            :class="{ '_req': req, '_active': inputValue, '_error': showError }"
+            v-model="inputValue"
             :id="nameId"
             autocomplete="off"
             name="form[]"
@@ -62,12 +44,10 @@
 </template>
 
 
-<script>
-export default {
-    name: 'my-input',
+<script setup>
+import {computed} from 'vue'
 
-    props: {
-        modelValue: [String, Number],
+    const props =defineProps({
         nameId: {
             type: [String, Number],
             default: () => ''
@@ -93,28 +73,12 @@ export default {
             type: [Boolean, String],
             default: false
         },
-    },
-    methods: {
-        updateInput(event) {
-            this.$emit('update:modelValue', event.target.value)
-        },
-        updateInputWithWhiteSpace(event) {
-            let updatedValue = event.target.value.replace(/[^\d.,]/g, '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g, '.').split('').reverse().join('').trim()
-            this.$emit('update:modelValue', updatedValue)
-        },
+    }) 
+    const [inputValue, modifiers] = defineModel({ required: true })   
 
-    },
-    computed: {
-        checkDataValue() {
-            if (this.modelValue) return true
-            else return false
-        },
-        showError() {
-            if (this.clickButton && this.modelValue == false) return true
-            else return false
-        },
-    }
-}
+        const showError= computed(()=>{
+            return (props.clickButton && props.modelValue == false)
+        })
 </script>
 
 <style lang="scss" scoped>

@@ -32,6 +32,7 @@ export const useCartStore = defineStore(
 		}
 		function cleanBucket() {
 			Object.keys(cartList).forEach((key) => delete cartList[key])
+			hasDelivery.value = false
 		}
 
 		// Getters

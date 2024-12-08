@@ -5,7 +5,6 @@
                 class="aside__form form"
                 @submit.prevent
             >
-
                 <div class="aside__forms">
                     <my-input
                         v-model.trim="post.title"
@@ -41,6 +40,12 @@
                     >
                         Ссылка на изображение товара
                     </my-input>
+                    <my-checkbox
+                        class="aside__forms-checkbox"
+                        v-model="isStandartImage"
+                        >Применить стандартую картинку</my-checkbox
+                    >
+
                     <my-input
                         v-model.trim="somePrice"
                         :nameId="4"
@@ -53,7 +58,6 @@
                     >
                         Цена товара
                     </my-input>
-
                 </div>
 
                 <my-button
@@ -68,91 +72,62 @@
     </aside>
 </template>
 
-<script>
+<script setup>
+import MyCheckbox from '@/components/UI/MyCheckbox.vue'
+import MyInput from '@/components/UI/MyInput.vue'
+import { reactive, ref, computed, watch, defineEmits } from 'vue'
+import { useGoodsStore } from '@/store/goods.js'
+const goodsStore = useGoodsStore()
+const emit = defineEmits(['create'])
 
-export default {
-    name: 'post-form',
-    data() {
-        return {
-            post: {
+const placeholders = reactive(['Введите наименование товара', 'Введите описание товара', 'Введите ссылку', 'Введите цену'])
+const dataError = ref('Поле является обязательным')
+const isStandartImage = ref(false)
+
+let post = reactive({
+    title: '',
+    description: '',
+    image: '',
+    price: '',
+})
+const somePrice = ref('')
+const clickButton = ref(false)
+function createPost() {
+    let btnSend = document.querySelector('.aside__form .btn')
+    if (btnSend.classList.contains('_active')) {
+        post.id = Date.now()
+        // Отправляем данные в родительский компонент:
+        emit('create', post)
+        // после отправки данных очищаем поля инпута:
+        setTimeout(() => {
+            post = {
                 title: '',
                 description: '',
                 image: '',
-                price: ''
-            },
-            somePrice: '',
-            placeholders: [
-                'Введите наименование товара',
-                'Введите описание товара',
-                'Введите ссылку',
-                'Введите цену'
-            ],
-            dataError: 'Поле является обязательным',
-            clickButton: false,
-        }
-    },
-    watch: {
-        somePrice(newPrice) {
-            this.post.price = newPrice.replace(/[^\d.,]/g, '').split('').reverse().join('').replace(/(.{3})/g, '$1 ').replace(/[,]/g, '.').split('').reverse().join('')
-        }
-    },
-    computed: {
-        checkAllData() {
-            if (this.post.title && this.post.image && this.post.price) return true
-            else return false
-        }
-    },
-    methods: {
-        createPost() {
-            let btnSend = document.querySelector('.aside__form .btn')
-            if (btnSend.classList.contains('_active')) {
-
-                this.post.id = Date.now()
-                // Отправляем данные в родительский компонент:
-                this.$emit('create', this.post)
-                // после отправки данных очищаем поля инпута:
-                setTimeout(() => {
-                    this.post = {
-                        title: '',
-                        description: '',
-                        image: '',
-                        price: ''
-                    },
-                    this.somePrice = ''
-                    this.clickButton = false
-                }, 300)
+                price: '',
             }
-            else this.clickButton = true
-        },
-        thousandSeparator(str) {
-            var parts = (str + '').split('.'),
-                main = parts[0],
-                len = main.length,
-                output = '',
-                i = len - 1
-
-            while (i >= 0) {
-                output = main.charAt(i) + output
-                if ((len - i) % 3 === 0 && i > 0) {
-                    output = ' ' + output
-                }
-                --i
-            }
-
-            if (parts.length > 1) {
-                output += '.' + parts[1]
-            }
-            return output
-        }
-    }
+            somePrice.value = ''
+            clickButton.value = false
+        }, 300)
+    } else clickButton.value = true
 }
+const checkAllData = computed(() => (post.title && post.image && post.price ? true : false))
+
+watch(isStandartImage, (newValue) => {
+    if (newValue) post.image = goodsStore.defaultImageLink
+    else post.image = ''
+})
+watch(somePrice, (newPrice) => {
+    post.price = newPrice.toLocaleString('ru-RU')
+})
 </script>
 
 <style lang="scss" scoped>
- 
 .aside {
-    background: #FFFEFB;
-    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
+    background: #fffefb;
+    box-shadow:
+        0px 20px 30px rgba(0, 0, 0, 0.04),
+        0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -189,8 +164,13 @@ export default {
     &__forms-item {
         margin-bottom: 18px;
     }
+    // .aside__forms-checkbox
+    &__forms-checkbox {
+        margin-bottom: 18px;
+    }
 
     // .aside__button
-    &__button {}
+    &__button {
+    }
 }
 </style>
