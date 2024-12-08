@@ -36,6 +36,7 @@
                         :clickButton="clickButton"
                         :placeHolder="placeholders[2]"
                         :data-error="dataError"
+                        :disabled="isStandartImage"
                         class="aside__forms-item"
                     >
                         Ссылка на изображение товара
