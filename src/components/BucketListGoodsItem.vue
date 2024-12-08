@@ -44,7 +44,7 @@ const props = defineProps({
 const count = computed(() => cartStore.cartList[props.item.title])
 const sum = computed(() => {  
     let price = props.item.price
-    if (typeof price === 'string') price = Number(price.replaceAll(' ', ''))
+    if (typeof price === 'string') price = Number(price.replace(/[^0-9.]/gim, ''))
     return (count.value * price).toLocaleString('ru-RU')
 })
 const priceItemWithSpace = computed (() => {

@@ -3,7 +3,7 @@
         <div class="aside__content">
             <form
                 class="aside__form form"
-                @submit.prevent
+                novalidate @submit.prevent="createPost"
             >
                 <div class="aside__forms">
                     <my-input
@@ -62,7 +62,7 @@
                 </div>
 
                 <my-button
-                    @click="createPost"
+                    type="submit"
                     :hasAllData="checkAllData"
                     class="aside__button"
                 >
@@ -119,7 +119,7 @@ watch(isStandartImage, (newValue) => {
     else post.image = ''
 })
 watch(somePrice, (newPrice) => {
-    post.price = newPrice.toLocaleString('ru-RU')
+    post.price = Number(newPrice).toLocaleString('ru-RU')
 })
 </script>
 
