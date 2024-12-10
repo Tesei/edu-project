@@ -27,10 +27,10 @@
                     </my-textarea>
 
                     <my-input
-                        v-model.trim="imageLink"
+                        v-model.trim="image"
                         :req="true"
                         :placeHolder="'Введите ссылку'"
-                        :data-error="errors.imageLink"
+                        :data-error="errors.image"
                         class="aside__forms-item"
                     >
                         Ссылка на изображение товара
@@ -73,27 +73,6 @@ import MyTextarea from '@/components/UI/MyTextarea.vue'
 import { useGoodsStore } from '@/store/goods.js'
 const goodsStore = useGoodsStore()
 
-
-
-// const clickButton = ref(false)
-// function createPost(data) {
-//     let btnSend = document.querySelector('.aside__form .btn')
-//     if (btnSend.classList.contains('_active')) {
-//         data.id = Date.now()
-//         // после отправки данных очищаем поля инпута:
-//         setTimeout(() => {
-//             // data = {
-//             //     title: '',
-//             //     description: '',
-//             //     image: '',
-//             //     price: '',
-//             // }
-//             clickButton.value = false
-//         }, 300)
-//     } else clickButton.value = true
-// }
-
-//===============================================================
 // Валидация
 import { useForm, useField } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -103,7 +82,7 @@ const validationSchema = toTypedSchema(
     object({
         title: string({ message: 'Обязательное поле' }).min(3, { message: 'Обязательное поле' }),
         description: any(),
-        imageLink: string({ message: 'Обязательное поле' }).default(goodsStore.defaultImageLink),
+        image: string({ message: 'Обязательное поле' }).default(goodsStore.defaultImageLink),
         price: string({ message: 'Ввести число' }),
     }),
 )
@@ -111,7 +90,7 @@ const validationSchema = toTypedSchema(
 const { handleSubmit, errors } = useForm({ validationSchema })
 const { value: title } = useField('title')
 const { value: description } = useField('description')
-const { value: imageLink } = useField('imageLink')
+const { value: image } = useField('imageLink')
 const { value: price } = useField('price')
 
 const onSubmit = handleSubmit((values) => {
