@@ -90,7 +90,7 @@ const validationSchema = toTypedSchema(
 const { handleSubmit, errors } = useForm({ validationSchema })
 const { value: title } = useField('title')
 const { value: description } = useField('description')
-const { value: image } = useField('imageLink')
+const { value: image } = useField('image')
 const { value: price } = useField('price')
 
 const onSubmit = handleSubmit((values) => {
