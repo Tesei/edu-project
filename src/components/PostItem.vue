@@ -50,7 +50,9 @@ const hasInCart = computed(() => {
 })
 
 function setSpaceInPrice(price) {
-    return (+price).toLocaleString('ru-RU')
+	let newPrice = price
+	if (typeof price === 'string') newPrice = price.replace(/[^0-9.]/gim, '')
+    return (+newPrice).toLocaleString('ru-RU')
 }
 
 </script>

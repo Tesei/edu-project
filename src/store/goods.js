@@ -10,70 +10,70 @@ export const useGoodsStore = defineStore(
         const defaultGoods = ref([
             {
                 id: 1,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара',
                 description:
-					'3 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '3 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '10 000',
             },
             {
                 id: 2,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара 2',
                 description:
-					'2 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '2 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '12 000',
             },
             {
                 id: 3,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара 3',
                 description:
-					'1 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '1 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '13 000',
             },
             {
                 id: 4,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара 4',
                 description:
-					'4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '14 000',
             },
             {
                 id: 5,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара 5',
                 description:
-					'4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '14 000',
             },
             {
                 id: 6,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара 6',
                 description:
-					'4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '14 000',
             },
             {
                 id: 7,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара 7',
                 description:
-					'4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '14 000',
             },
             {
                 id: 8,
-                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
+                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
                 title: 'Наименование товара 7',
                 description:
-					'4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+                    '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
                 price: '14 000',
             },
         ])
-        const defaultImageLink = 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg'
+        const defaultImageLink = "https://tesei.github.io/sites/mockUp's/polaroid.jpg"
 
         // Actions
         const fetchGoodsFromFakestore = async () => {
@@ -117,5 +117,5 @@ export const useGoodsStore = defineStore(
             persist: true,
         }
     },
-    { persist: true }
+    { persist: true },
 )

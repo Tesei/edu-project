@@ -104,7 +104,7 @@ const validationSchema = toTypedSchema(
         title: string({ message: 'Обязательное поле' }).min(3, { message: 'Обязательное поле' }),
         description: any(),
         imageLink: string({ message: 'Обязательное поле' }).default(goodsStore.defaultImageLink),
-        price: string({ message: 'Обязательное поле' }),
+        price: string({ message: 'Ввести число' }),
     }),
 )
 
