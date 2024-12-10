@@ -4,30 +4,38 @@
             <transition-group name="check__data-send-message-anination">
                 <form
                     class="buy-form form"
-                    @submit.prevent
+                    @submit="onSubmit"
                     v-if="isOrderSend === 'false'"
                 >
                     <my-input
-                        v-model.trim="formData.name"
-                        :nameId="1"
+                        v-model.trim="name"
                         :req="true"
-                        :clickButton="clickButton"
                         :placeHolder="'Фамилия Имя Отчество'"
-                        :data-error="dataError"
+                        :data-error="errors.name"
                         class="form__input"
                     >
                         Введите ваше ФИО
                     </my-input>
 
-                    <my-input
-                        v-model.trim="formData.birthDate"
-                        :nameId="2"
+                    <my-input-date
+                        v-model.trim="birthDate"
                         :req="false"
-                        :placeHolder="'01 01 1900'"
-                        :data-error="dataError"
+                        :data-error="errors.birthDate"
                         class="form__input"
                     >
                         Дата рождения
+                    </my-input-date>
+
+                    <my-input
+                        name="email"
+                        v-model.trim="email"
+                        type="email"
+                        :req="true"
+                        :placeHolder="'e-mail'"
+                        :data-error="errors.email"
+                        class="form__input"
+                    >
+                        Электронная почта
                     </my-input>
 
                     <div
@@ -36,34 +44,28 @@
                     >
                         <span class="form__subtitle">Адрес:</span>
                         <my-input
-                            v-model.trim="formData.adress.city"
-                            :nameId="3"
+                            v-model.trim="city"
                             :req="true"
-                            :clickButton="clickButton"
-                            :placeHolder="'City'"
-                            :data-error="dataError"
+                            :placeHolder="'Город'"
+                            :data-error="errors.city"
                             class="form__input"
                         >
                             Город
                         </my-input>
                         <my-input
-                            v-model.trim="formData.adress.street"
-                            :nameId="3"
+                            v-model.trim="street"
                             :req="true"
-                            :clickButton="clickButton"
                             :placeHolder="'Улица'"
-                            :data-error="dataError"
+                            :data-error="errors.street"
                             class="form__input"
                         >
                             Улица
                         </my-input>
                         <my-input
-                            v-model.trim="formData.adress.home"
-                            :nameId="3"
+                            v-model.trim="building"
                             :req="true"
-                            :clickButton="clickButton"
                             :placeHolder="'2'"
-                            :data-error="dataError"
+                            :data-error="errors.building"
                             class="form__input"
                         >
                             Номер дома
@@ -73,23 +75,19 @@
                     <span class="form__subtitle">Банковские реквизиты:</span>
                     <div class="form__banking">
                         <my-input
-                            v-model.trim="formData.bankCardData.number"
-                            :nameId="3"
+                            v-model.trim="bankCardNumber"
                             :req="true"
                             :placeHolder="'0000 0000 0000 0000'"
-                            :clickButton="clickButton"
-                            :data-error="dataError"
+                            :data-error="errors.bankCardNumber"
                             class="form__input"
                         >
                             Номер карты
                         </my-input>
                         <my-input
-                            v-model.trim="formData.bankCardData.usessBefore"
-                            :nameId="3"
+                            v-model.trim="bankCardUsessBefore"
                             :req="true"
-                            :clickButton="clickButton"
                             :placeHolder="'01/26'"
-                            :data-error="dataError"
+                            :data-error="errors.bankCardUsessBefore"
                             class="form__input"
                         >
                             Карта действительна до
@@ -98,13 +96,13 @@
 
                     <my-checkbox
                         class="form__input"
-                        v-model="formData.agreement"
+                        v-model="agreement"
+						:error="errors.agreement"
                     >
                         Соглашение об обработке персональных данных
                     </my-checkbox>
 
                     <my-button
-                        @click="sendOrder"
                         :hasAllData="true"
                         class="form__button"
                     >
@@ -133,34 +131,75 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import MyCheckbox from '@/components/ui/MyCheckbox.vue'
 import MyInput from '@/components/UI/MyInput.vue'
+import MyInputDate from '@/components/UI/MyInputDate.vue'
 
 import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
+//===============================================================
 
-const formData = reactive({
-    name: '',
-    birthDate: '',
-    adress: {
-        city: '',
-        street: '',
-        home: '',
-    },
-    bankCardData: {
-        number: null,
-        usessBefore: '',
-    },
-    agreement: false,
+import { useForm, useField } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import { object, string, boolean, any } from 'zod'
+// import * as zod from 'zod'
+
+let deliveryCheck = cartStore.hasDelivery ? string({ message: 'Обязательное поле' }) : any()
+
+const validationSchema = toTypedSchema(
+    object({
+        email: string({ message: 'Обязательное поле' }).email({ message: 'Нужен корректный email' }).default('something@email.com'),
+        name: string({ message: 'Обязательное поле' }).min(1, { message: 'Обязательное поле' }),
+        birthDate: string({ message: 'Обязательное поле' }).date(),
+        city: deliveryCheck,
+        street: deliveryCheck,
+        building: deliveryCheck,
+        agreement: boolean(),
+        bankCardNumber: string({ message: 'Обязательное поле' }).min(10, { message: 'Минимум 10 символов' }),
+        bankCardUsessBefore: string({ message: 'Обязательное поле' }).min(5, { message: 'Нужно 5 символов' }),
+        // password: zod.string().min(1, { message: 'This is required' }).min(8, { message: 'Too short' }),
+    }),
+)
+
+const { handleSubmit, errors } = useForm({ validationSchema })
+
+const { value: email } = useField('email', {validateOnModelUpdate: false})
+// const { value: password } = useField('password')
+const { value: name } = useField('name')
+
+const { value: birthDate } = useField('birthDate')
+const { value: city } = useField('city')
+const { value: street } = useField('street')
+const { value: building } = useField('building')
+const { value: bankCardNumber } = useField('bankCardNumber')
+const { value: bankCardUsessBefore } = useField('bankCardUsessBefore')
+const { value: agreement } = useField('agreement')
+
+const onSubmit = handleSubmit((values) => {
+    // alert(JSON.stringify(values, null, 2))
+    sendOrder(values)
 })
+// ====================================================
+// Для приведения к стандарту числа карты банка
+// const r = /\b(?:\d{4}[ -]?){3}(?=\d{4}\b)/gm
+// const subst = '**** **** **** '
+
+// console.log(cardNumber.replace(r, subst))
+//===============================================================
+// Для одного поля
+// const fieldSchema = toTypedSchema(
+//   zod.string().min(1, { message: 'Обязательное поле' }).email({ message: 'нужен корректный email' })
+// )
+// const { value, errorMessage } = useField('email', fieldSchema)
+//===============================================================
 
 const isOrderSend = ref('false')
-async function sendOrder() {
+async function sendOrder(data) {
     isOrderSend.value = 'sending'
 
     try {
-        await cartStore.sendBuyForm(formData)
+        await cartStore.sendBuyForm(data)
         isOrderSend.value = 'success'
     } catch (e) {
         console.log('Ошибка в sendOrder', e)

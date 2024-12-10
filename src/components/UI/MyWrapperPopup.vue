@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ui-pop-up__wrapper" @click.self="$emit('close')">
+    <div class="ui-pop-up__wrapper" @click.stop.self="$emit('close')">
       <div class="ui-pop-up__content">
         <div class="ui-pop-up__header">
           <div><slot name="header"></slot></div>

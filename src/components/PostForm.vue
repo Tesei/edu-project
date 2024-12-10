@@ -79,6 +79,19 @@ import MyInput from '@/components/UI/MyInput.vue'
 import { reactive, ref, computed, watch, defineEmits } from 'vue'
 import { useGoodsStore } from '@/store/goods.js'
 const goodsStore = useGoodsStore()
+//===============================================================
+// Валидация
+import { useForm } from 'vee-validate'
+import * as zod from 'zod'
+
+const schema = zod.object({
+  email: zod.string().required().email(),
+})
+const { defineField } = useForm({ validationSchema: schema, })
+const [email, emailAttrs] = defineField('email')
+
+//===============================================================
+
 const emit = defineEmits(['create'])
 
 const placeholders = reactive(['Введите наименование товара', 'Введите описание товара', 'Введите ссылку', 'Введите цену'])

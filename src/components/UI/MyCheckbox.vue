@@ -8,6 +8,7 @@
 		/>
 		<label
 			class="my-checkbox__label"
+            :class="{ '_red': error }"
 			:for="id"
 		>
 			<slot></slot>
@@ -16,6 +17,7 @@
 </template>
 
 <script setup>
+const props = defineProps(['error'])
 	const id = Math.random()
 	const isChecked = defineModel()
 </script>
@@ -33,5 +35,7 @@
 &__label {
 }
 }
-
+._red{
+    color: $red;
+}
 </style>

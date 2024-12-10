@@ -17,22 +17,22 @@ $md4: 479.98px;
 
 //<ОСНОВНАЯ СЕТКА>================================================================
 ._container {
-	max-width: $maxWidthContainer + px;
-	margin: 0 auto;
-	padding: 0 32px;
+    max-width: $maxWidthContainer + px;
+    margin: 0 auto;
+    padding: 0 32px;
 
-	@media (max-width: $md1) {
-		max-width: 1440px;
-		padding: 0 32px;
-	}
-	@media (max-width: $md2) {
-		max-width: 750px;
-		padding: 0 15px;
-	}
-	@media (max-width: $md3) {
-		max-width: none;
-		padding: 0 10px;
-	}
+    @media (max-width: $md1) {
+        max-width: 1440px;
+        padding: 0 32px;
+    }
+    @media (max-width: $md2) {
+        max-width: 750px;
+        padding: 0 15px;
+    }
+    @media (max-width: $md3) {
+        max-width: none;
+        padding: 0 10px;
+    }
 }
 //===============================================================
 $black: #1f2432;
@@ -42,6 +42,7 @@ $blue: #0069b4;
 $bgn: #f6f8fa;
 $gray-arrow: #90a2b5;
 $green: #7bae73;
+$red: #ff8484;
 
 $grey-color-light: color.adjust($gray-txt, $lightness: 15%, $space: hsl);
 $grey-color-strong: color.adjust($gray-txt, $lightness: 45%, $space: hsl);
