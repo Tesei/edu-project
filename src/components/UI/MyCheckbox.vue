@@ -18,8 +18,8 @@
 
 <script setup>
 const props = defineProps(['error'])
-	const id = Math.random()
-	const isChecked = defineModel()
+const id = Math.random()
+const isChecked = defineModel()
 </script>
 
 <style lang="scss" scoped>

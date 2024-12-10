@@ -37,22 +37,22 @@
 
 <script setup>
 import { ref } from 'vue'
-	import MyInput from '@/components/UI/MyInput.vue'
-	import TheBucket from '@/components/TheBucket.vue'
-	import { useRouter } from 'vue-router'
-	const router = useRouter()
+import MyInput from '@/components/UI/MyInput.vue'
+import TheBucket from '@/components/TheBucket.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
-	const searchPlaceholder = 'Поиск ...'
+const searchPlaceholder = 'Поиск ...'
 
-	const searchQueryChild = ref('')
-	const selectedSortChild = ref('')
+const searchQueryChild = ref('')
+const selectedSortChild = ref('')
 
-	const sortOptions = [
-		{ value: 'title', name: 'По названию' },
-		{ value: 'body', name: 'По содержанию' },
-		{ value: 'price-from-min', name: 'По цене min' },
-		{ value: 'price-from-max', name: 'По цене max' },
-	]
+const sortOptions = [
+    { value: 'title', name: 'По названию' },
+    { value: 'body', name: 'По содержанию' },
+    { value: 'price-from-min', name: 'По цене min' },
+    { value: 'price-from-max', name: 'По цене max' },
+]
 </script>
 
 <style lang="scss" scoped>

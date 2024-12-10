@@ -50,7 +50,7 @@ const hasInCart = computed(() => {
 })
 
 function setSpaceInPrice(price) {
-	return (+price).toLocaleString('ru-RU')
+    return (+price).toLocaleString('ru-RU')
 }
 
 </script>
