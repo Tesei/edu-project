@@ -46,8 +46,8 @@ export const useCartStore = defineStore(
         const getTotalSumOfGoods = computed(() => {
             return Object.entries(cartList).reduce((acc, value) => {
                 let priceItem = goodsStore.goods.find((item) => item.title === value[0])?.price
-                if (typeof priceItem === 'string') priceItem = +priceItem.replace(/[^0-9.]/gim, '')
-                return priceItem * value[1] + acc
+                if (typeof priceItem === 'string') priceItem = priceItem.replace(/[^0-9.]/gim, '')
+                return +priceItem * value[1] + acc
             }, 0)
         })
         const getTotalSumOfGoodsAndService = computed(() => {
