@@ -1,7 +1,7 @@
 <template>
     <div class="form__line">
         <label
-            :for="nameId"
+            :for="uniqNumber"
             class="form__label"
             :class="{ form__label_req: req }"
         >
@@ -14,7 +14,7 @@
             class="input"
             :class="{ _req: req, _active: inputValue, _error: dataError }"
             v-model="inputValue"
-            :id="nameId"
+            :id="uniqNumber"
             autocomplete="off"
             name="form[]"
             data-value=""
@@ -28,7 +28,7 @@
             class="input"
             :class="{ _req: req, _active: inputValue, _error: dataError }"
             v-model="inputValue"
-            :id="nameId"
+            :id="uniqNumber"
             autocomplete="off"
             name="form[]"
             data-value=""
@@ -47,12 +47,8 @@
 </template>
 
 <script setup>
-
+const uniqNumber = Math.random()
 const props = defineProps({
-    nameId: {
-        type: [String, Number],
-        default: () => '',
-    },
     req: {
         type: Boolean,
         required: true,

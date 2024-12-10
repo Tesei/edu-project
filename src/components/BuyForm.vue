@@ -4,7 +4,7 @@
             <transition-group name="check__data-send-message-anination">
                 <form
                     class="buy-form form"
-                    @submit="onSubmit"
+                    @submit.prevent="onSubmit"
                     v-if="isOrderSend === 'false'"
                 >
                     <my-input

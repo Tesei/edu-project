@@ -13,7 +13,7 @@
               {{ buttonFormOpenMessage ? "Закрыть форму" : "Открыть форму" }}
             </my-button>
             <my-dialog :show="dialogVisible" :showForm="animationDialog">
-              <post-form @create="goodsStore.createPost" />
+              <post-form />
             </my-dialog>
           </div>
         </div>

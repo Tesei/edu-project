@@ -3,57 +3,50 @@
         <div class="aside__content">
             <form
                 class="aside__form form"
-                novalidate @submit.prevent="createPost"
+                @submit.prevent="onSubmit"
             >
                 <div class="aside__forms">
                     <my-input
-                        v-model.trim="post.title"
-                        :nameId="1"
+                        v-model.trim="title"
                         :req="true"
-                        :clickButton="clickButton"
-                        :placeHolder="placeholders[0]"
-                        :data-error="dataError"
+                        :placeHolder="'Введите наименование товара'"
+                        :data-error="errors.title"
                         class="aside__forms-item"
                     >
                         Наименование товара
                     </my-input>
 
                     <my-textarea
-                        v-model.trim="post.description"
-                        :nameId="2"
+                        v-model="description"
                         :req="false"
-                        :placeHolder="placeholders[1]"
-                        :data-error="dataError"
+                        :placeHolder="'Введите описание товара'"
+                        :data-error="errors.description"
                         class="aside__forms-item"
                     >
                         Описание товара
                     </my-textarea>
 
                     <my-input
-                        v-model.trim="post.image"
-                        :nameId="3"
+                        v-model.trim="imageLink"
                         :req="true"
-                        :clickButton="clickButton"
-                        :placeHolder="placeholders[2]"
-                        :data-error="dataError"
-                        :disabled="isStandartImage"
+                        :placeHolder="'Введите ссылку'"
+                        :data-error="errors.imageLink"
                         class="aside__forms-item"
                     >
                         Ссылка на изображение товара
                     </my-input>
-                    <my-checkbox
+                    <!-- <my-checkbox
                         class="aside__forms-checkbox"
                         v-model="isStandartImage"
-                        >Применить стандартую картинку</my-checkbox
-                    >
+                        >
+                        Применить стандартую картинку
+                    </my-checkbox> -->
 
                     <my-input
-                        v-model.trim="somePrice"
-                        :nameId="4"
+                        v-model.trim="price"
                         :req="true"
-                        :clickButton="clickButton"
-                        :placeHolder="placeholders[3]"
-                        :data-error="dataError"
+                        :placeHolder="'Введите цену'"
+                        :data-error="errors.price"
                         :oninpShow="true"
                         class="aside__forms-item"
                     >
@@ -63,7 +56,6 @@
 
                 <my-button
                     type="submit"
-                    :hasAllData="checkAllData"
                     class="aside__button"
                 >
                     Добавить товар
@@ -74,66 +66,59 @@
 </template>
 
 <script setup>
-import MyCheckbox from '@/components/UI/MyCheckbox.vue'
+// import MyCheckbox from '@/components/UI/MyCheckbox.vue'
 import MyInput from '@/components/UI/MyInput.vue'
-import { reactive, ref, computed, watch, defineEmits } from 'vue'
+import MyTextarea from '@/components/UI/MyTextarea.vue'
+// import { onMounted, ref } from 'vue'
 import { useGoodsStore } from '@/store/goods.js'
 const goodsStore = useGoodsStore()
+
+
+
+// const clickButton = ref(false)
+// function createPost(data) {
+//     let btnSend = document.querySelector('.aside__form .btn')
+//     if (btnSend.classList.contains('_active')) {
+//         data.id = Date.now()
+//         // после отправки данных очищаем поля инпута:
+//         setTimeout(() => {
+//             // data = {
+//             //     title: '',
+//             //     description: '',
+//             //     image: '',
+//             //     price: '',
+//             // }
+//             clickButton.value = false
+//         }, 300)
+//     } else clickButton.value = true
+// }
+
 //===============================================================
 // Валидация
-import { useForm } from 'vee-validate'
-import * as zod from 'zod'
+import { useForm, useField } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import { object, string, any } from 'zod'
 
-const schema = zod.object({
-  email: zod.string().required().email(),
+const validationSchema = toTypedSchema(
+    object({
+        title: string({ message: 'Обязательное поле' }).min(3, { message: 'Обязательное поле' }),
+        description: any(),
+        imageLink: string({ message: 'Обязательное поле' }).default(goodsStore.defaultImageLink),
+        price: string({ message: 'Обязательное поле' }),
+    }),
+)
+
+const { handleSubmit, errors } = useForm({ validationSchema })
+const { value: title } = useField('title')
+const { value: description } = useField('description')
+const { value: imageLink } = useField('imageLink')
+const { value: price } = useField('price')
+
+const onSubmit = handleSubmit((values) => {
+    values.id = Date.now()
+    goodsStore.goods.push(values)
 })
-const { defineField } = useForm({ validationSchema: schema, })
-const [email, emailAttrs] = defineField('email')
 
-//===============================================================
-
-const emit = defineEmits(['create'])
-
-const placeholders = reactive(['Введите наименование товара', 'Введите описание товара', 'Введите ссылку', 'Введите цену'])
-const dataError = ref('Поле является обязательным')
-const isStandartImage = ref(false)
-
-let post = reactive({
-    title: '',
-    description: '',
-    image: '',
-    price: '',
-})
-const somePrice = ref('')
-const clickButton = ref(false)
-function createPost() {
-    let btnSend = document.querySelector('.aside__form .btn')
-    if (btnSend.classList.contains('_active')) {
-        post.id = Date.now()
-        // Отправляем данные в родительский компонент:
-        emit('create', post)
-        // после отправки данных очищаем поля инпута:
-        setTimeout(() => {
-            post = {
-                title: '',
-                description: '',
-                image: '',
-                price: '',
-            }
-            somePrice.value = ''
-            clickButton.value = false
-        }, 300)
-    } else clickButton.value = true
-}
-const checkAllData = computed(() => (post.title && post.image && post.price ? true : false))
-
-watch(isStandartImage, (newValue) => {
-    if (newValue) post.image = goodsStore.defaultImageLink
-    else post.image = ''
-})
-watch(somePrice, (newPrice) => {
-    post.price = Number(newPrice).toLocaleString('ru-RU')
-})
 </script>
 
 <style lang="scss" scoped>

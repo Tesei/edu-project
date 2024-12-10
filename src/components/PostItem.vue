@@ -24,7 +24,7 @@
 			<div class="card__about">
 				<span class="card__title">{{ post.title }}</span>
 				<span class="card__text">{{ post.description }}</span>
-				<span class="card__price">{{ post.price }} <span> руб.</span></span>
+				<span class="card__price">{{ setSpaceInPrice(post.price) }} <span> руб.</span></span>
 				<my-button class="card__btn" @click="$emit('click-bye', post)">{{ hasInCart }}</my-button>
 			</div>
 		</div>
@@ -45,9 +45,13 @@ const props = defineProps({
 })
 
 const hasInCart = computed(() => {
-    if (cartStore.cartList.hasOwnProperty(props.post.title)) return 'В корзине ' + cartStore.cartList[props.post.title]
+    if (Object.prototype.hasOwnProperty.call(cartStore.cartList, props.post.title)) return 'В корзине ' + cartStore.cartList[props.post.title]
     else return 'В корзину'
 })
+
+function setSpaceInPrice(price) {
+	return (+price).toLocaleString('ru-RU')
+}
 
 </script>
 
