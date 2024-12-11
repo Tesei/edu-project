@@ -1,7 +1,7 @@
 <template>
     <the-header
-        v-model:search-query-child="searchQuery"
-        v-model:selected-sort-child="selectedSort"
+        @input-search="$event => (searchQuery = $event)"
+        @select-sort="$event => (selectedSort = $event)"
     />
 
     <main class="main">
@@ -41,9 +41,6 @@ import PostList from '@/components/PostList.vue'
 import { useGoodsStore } from '@/store/goods.js'
 const goodsStore = useGoodsStore()
 
-const searchQuery = ref('')
-const selectedSort = ref('')
-
 onBeforeMount(async () => {
     if (goodsStore.goods.length === 0) await goodsStore.fetchGoodsFromFakestore()
 })
@@ -63,6 +60,10 @@ function openForm() {
     }
 }
 
+
+const searchQuery = ref('')
+const selectedSort = ref('')
+
 // todo доработать фильтрацию селекта
 const sortedPosts = computed(() => {
     if (selectedSort.value === 'price-from-max')
@@ -78,10 +79,10 @@ const sortedPosts = computed(() => {
 const sortedAndSearchedPosts = computed(() => {
     const serchText = searchQuery.value.toLowerCase()
     return sortedPosts.value.filter(
-        (post) =>
-            post.title?.toLowerCase().includes(serchText) ||
-            post.description?.toLowerCase().includes(serchText) ||
-            post.price?.toLowerCase().includes(serchText),
+        (item) =>
+        item.title?.toLowerCase().includes(serchText) ||
+        item.description?.toLowerCase().includes(serchText) ||
+        String(item).price?.toLowerCase().includes(serchText),
     )
 })
 </script>
