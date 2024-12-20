@@ -21,11 +21,11 @@
 					class="card__img"
 				>
 			</div>
-			<div class="card__about">
+			<div class="card__about" @click="router.push({name: 'itemPage', params: {id: post.id}})"      >
 				<span class="card__title">{{ post.title }}</span>
 				<span class="card__text">{{ post.description }}</span>
 				<span class="card__price">{{ setSpaceInPrice(post.price) }} <span> руб.</span></span>
-				<my-button class="card__btn" @click="$emit('click-bye', post)">{{ hasInCart }}</my-button>
+				<my-button class="card__btn" @click.stop="$emit('click-bye', post)">{{ hasInCart }}</my-button>
 			</div>
 		</div>
 	</article>
@@ -36,6 +36,8 @@
 import {computed} from 'vue'
 import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const props = defineProps({
     post: {
@@ -45,7 +47,7 @@ const props = defineProps({
 })
 
 const hasInCart = computed(() => {
-    if (Object.prototype.hasOwnProperty.call(cartStore.cartList, props.post.title)) return 'В корзине ' + cartStore.cartList[props.post.title]
+    if (Object.prototype.hasOwnProperty.call(cartStore.getCartList, props.post.title)) return 'В корзине ' + cartStore.getCartList[props.post.title]
     else return 'В корзину'
 })
 

@@ -7,44 +7,37 @@ import axios from 'axios'
 export const useCartStore = defineStore(
     'cart',
     () => {
-        const cartList = reactive({})
-        // const cartItems = computed(() => {
-        // 	const result = []
-        // 	Object.entries(cartList).forEach((arr) => {
-        // 		let place = goodsStore.goods.filter((item) => item.title === arr[0])[0]
-        // 		if (typeof place === 'object') result.push(place)
-        // 	})
-        // 	return result
-        // })
+        const cartList = ref({})
+        const getCartList = computed(() => cartList.value)
 
         function addToCartList(item) {
-            if (cartList[item.title]) cartList[item.title]++
-            else cartList[item.title] = 1
+            if (cartList.value[item.title]) cartList.value[item.title]++
+            else cartList.value[item.title] = 1
         }
         function removeFromCartList(item) {
-            if (cartList[item.title] && cartList[item.title] > 1) cartList[item.title]--
-            else if (cartList[item.title] && cartList[item.title] <= 1) delete cartList[item.title]
+            if (cartList.value[item.title] && cartList.value[item.title] > 1) cartList.value[item.title]--
+            else if (cartList.value[item.title] && cartList.value[item.title] <= 1) delete cartList.value[item.title]
             else return
         }
 
         function cleanItemFromBucket(item) {
-            delete cartList[item.title]
+            delete cartList.value[item.title]
         }
         function cleanBucket() {
-            Object.keys(cartList).forEach((key) => delete cartList[key])
+            Object.keys(cartList.value).forEach((key) => delete cartList.value[key])
             hasDelivery.value = false
         }
 
         const getCountOfGoodsNames = computed(() => {
-            return Object.keys(cartList).length
+            return Object.keys(cartList.value).length
         })
 
         const getCountOfGoodsItems = computed(() => {
-            return Object.entries(cartList).reduce((acc, value) => acc + value[1], 0)
+            return Object.entries(cartList.value).reduce((acc, value) => acc + value[1], 0)
         })
 
         const getTotalSumOfGoods = computed(() => {
-            return Object.entries(cartList).reduce((acc, value) => {
+            return Object.entries(cartList.value).reduce((acc, value) => {
                 let priceItem = goodsStore.goods.find((item) => item.title === value[0])?.price
                 if (typeof priceItem === 'string') priceItem = priceItem.replace(/[^0-9.]/gim, '')
                 return +priceItem * value[1] + acc
@@ -77,9 +70,23 @@ export const useCartStore = defineStore(
             }
         }
 
+        const savedCartLists = reactive([])
+        function saveUserData(userId) {
+            const data = {
+                id: userId,
+                cartList: { ...cartList.value },
+            }
+            savedCartLists.push(data)
+            cleanBucket()
+        }
+        function loadSavedUserData(userId) {
+            let newData = savedCartLists.find((user) => user.id === userId)
+            if (newData) cartList.value = { ...newData.cartList }
+        }
+
         return {
             addToCartList,
-            cartList,
+            getCartList,
             removeFromCartList,
             getCountOfGoodsNames,
             getCountOfGoodsItems,
@@ -92,6 +99,10 @@ export const useCartStore = defineStore(
             showClientForm,
             changeVisibleClientForm,
             sendBuyForm,
+            saveUserData,
+            loadSavedUserData,
+            savedCartLists,
+            cartList,
         }
     },
     { persist: true },

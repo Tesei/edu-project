@@ -9,7 +9,7 @@
                     <my-input
                         v-model.trim="title"
                         :req="true"
-                        :placeHolder="'Введите наименование товара'"
+                        :placeholder="'Введите наименование товара'"
                         :data-error="errors.title"
                         class="aside__forms-item"
                     >
@@ -19,7 +19,7 @@
                     <my-textarea
                         v-model="description"
                         :req="false"
-                        :placeHolder="'Введите описание товара'"
+                        :placeholder="'Введите описание товара'"
                         :data-error="errors.description"
                         class="aside__forms-item"
                     >
@@ -29,7 +29,7 @@
                     <my-input
                         v-model.trim="image"
                         :req="true"
-                        :placeHolder="'Введите ссылку'"
+                        :placeholder="'Введите ссылку'"
                         :data-error="errors.image"
                         class="aside__forms-item"
                     >
@@ -45,7 +45,7 @@
                     <my-input
                         v-model.trim="price"
                         :req="true"
-                        :placeHolder="'Введите цену'"
+                        :placeholder="'Введите цену'"
                         :data-error="errors.price"
                         :oninpShow="true"
                         class="aside__forms-item"

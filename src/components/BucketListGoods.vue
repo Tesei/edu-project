@@ -76,10 +76,10 @@ import { useGoodsStore } from '@/store/goods'
 const cartStore = useCartStore()
 const goodsStore = useGoodsStore()
 
-const hasGoods = computed(() => Object.keys(cartStore.cartList).length > 0)
+const hasGoods = computed(() => Object.keys(cartStore.getCartList).length > 0)
 const findFullInfoAboutGoods = computed(() => {
     const result = []
-    Object.entries(cartStore.cartList).forEach((arr) => {
+    Object.entries(cartStore.getCartList).forEach((arr) => {
         let place = goodsStore.goods.filter((item) => item.title === arr[0])[0]
         if (typeof place === 'object') result.push(place)
     })

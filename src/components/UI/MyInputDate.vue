@@ -18,7 +18,7 @@
             autocomplete="off"
             name="form[]"
             data-value=""
-            :placeholder="placeHolder"
+            :placeholder="placeholder"
             :disabled="disabled"
         />
         <input
@@ -31,7 +31,7 @@
             autocomplete="off"
             name="form[]"
             data-value=""
-            :placeholder="placeHolder"
+            :placeholder="placeholder"
             :disabled="disabled"
         />
 
@@ -52,7 +52,7 @@ const props = defineProps({
         required: true,
         default: false,
     },
-    placeHolder: {
+    placeholder: {
         type: [String, Number],
         default: () => '',
     },

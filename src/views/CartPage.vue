@@ -1,6 +1,9 @@
 <template>
 	<div class="wrapper">
-		<the-header><template #undefined>&nbsp; </template> </the-header>
+		<the-header>
+			<template #title>Корзина </template> 
+			<template #undefined>&nbsp; </template> 
+		</the-header>
 		<main class="main">
 			<div class="main__content _container">
 				<bucket-two-column />

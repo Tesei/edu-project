@@ -10,7 +10,7 @@
                     <my-input
                         v-model.trim="name"
                         :req="true"
-                        :placeHolder="'Фамилия Имя Отчество'"
+                        :placeholder="'Фамилия Имя Отчество'"
                         :data-error="errors.name"
                         class="form__input"
                     >
@@ -31,7 +31,7 @@
                         v-model.trim="email"
                         type="email"
                         :req="true"
-                        :placeHolder="'e-mail'"
+                        :placeholder="'e-mail'"
                         :data-error="errors.email"
                         class="form__input"
                     >
@@ -46,7 +46,7 @@
                         <my-input
                             v-model.trim="city"
                             :req="true"
-                            :placeHolder="'Город'"
+                            :placeholder="'Город'"
                             :data-error="errors.city"
                             class="form__input"
                         >
@@ -55,7 +55,7 @@
                         <my-input
                             v-model.trim="street"
                             :req="true"
-                            :placeHolder="'Улица'"
+                            :placeholder="'Улица'"
                             :data-error="errors.street"
                             class="form__input"
                         >
@@ -64,7 +64,7 @@
                         <my-input
                             v-model.trim="building"
                             :req="true"
-                            :placeHolder="'2'"
+                            :placeholder="'2'"
                             :data-error="errors.building"
                             class="form__input"
                         >
@@ -77,7 +77,7 @@
                         <my-input
                             v-model.trim="bankCardNumber"
                             :req="true"
-                            :placeHolder="'0000 0000 0000 0000'"
+                            :placeholder="'0000 0000 0000 0000'"
                             :data-error="errors.bankCardNumber"
                             class="form__input"
                         >
@@ -86,7 +86,7 @@
                         <my-input
                             v-model.trim="bankCardUsessBefore"
                             :req="true"
-                            :placeHolder="'01/26'"
+                            :placeholder="'01/26'"
                             :data-error="errors.bankCardUsessBefore"
                             class="form__input"
                         >

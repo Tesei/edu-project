@@ -75,6 +75,17 @@ const sortedPosts = computed(() => {
             post1[selectedSort.value]?.localeCompare(post2[selectedSort.value]),
         )
 })
+// const getSortTrips = computed(() => {
+//             if (sort.value === 'По убыванию') {
+//                 return trips.value.sort((a, b) => {
+//                     return new Date(b.startDate) - new Date(a.startDate)
+//                 })
+//             } else if (sort.value === 'По возрастанию') {
+//                 return trips.value.sort((a, b) => {
+//                     return new Date(a.startDate) - new Date(b.startDate)
+//                 })
+//             } else return trips.value
+//         })
 
 const sortedAndSearchedPosts = computed(() => {
     const serchText = searchQuery.value.toLowerCase()

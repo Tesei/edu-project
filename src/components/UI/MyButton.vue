@@ -52,7 +52,7 @@ export default {
 
     @media (min-width: $md2) {
         &:hover {
-            transform: scale(1.05);
+            transform: scale(.97);
         }
     }
 }

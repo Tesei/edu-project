@@ -19,6 +19,12 @@ import BucketListGoods from '@/components/BucketListGoods.vue'
 import BucketFinallyCheck from '@/components/BucketFinallyCheck.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
+import { onMounted } from 'vue'
+
+onMounted(() => {
+    console.log('router', router)
+    
+})
 </script>
 
 

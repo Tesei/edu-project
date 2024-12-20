@@ -16,9 +16,9 @@
             v-model="inputValue"
             :id="uniqNumber"
             autocomplete="off"
-            name="form[]"
+            name="name"
             data-value=""
-            :placeholder="placeHolder"
+            :placeholder="placeholder"
             :data-error="dataError"
             :disabled="disabled"
         />
@@ -30,19 +30,19 @@
             v-model="inputValue"
             :id="uniqNumber"
             autocomplete="off"
-            name="form[]"
+            name="name"
             data-value=""
-            :placeholder="placeHolder"
+            :placeholder="placeholder"
             :data-error="dataError"
             :disabled="disabled"
         />
 
-        <div
+        <p
             v-if="dataError"
             class="form__error"
         >
             {{ dataError }}
-        </div>
+        </p>
     </div>
 </template>
 
@@ -51,10 +51,10 @@ const uniqNumber = Math.random()
 const props = defineProps({
     req: {
         type: Boolean,
-        required: true,
+        required: false,
         default: false,
     },
-    placeHolder: {
+    placeholder: {
         type: [String, Number],
         default: () => '',
     },
@@ -70,8 +70,12 @@ const props = defineProps({
         type: [Boolean, String],
         default: false,
     },
+    name: {
+        type: String,
+        default: '',
+    },
 })
-const inputValue = defineModel({ required: true })
+const inputValue = defineModel()
 
 </script>
 

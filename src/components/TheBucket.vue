@@ -9,7 +9,7 @@
 				/>
 			</div>
 			<div class="info-bucket__text">
-				<span class="info-bucket__title">Ваша корзина</span>
+				<h4 class="info-bucket__title">Ваша корзина</h4>
 				<span class="info-bucket__amount-of-goods"> Количество наименований: {{ cartStore.getCountOfGoodsNames }} </span>
 				<span class="info-bucket__summ-of-goods text">Общее количество: {{ cartStore.getCountOfGoodsItems }}</span>
 			</div>

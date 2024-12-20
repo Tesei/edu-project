@@ -2,16 +2,16 @@
     <header class="header">
         <div class="header__content _container">
             <div class="header__row">
+                <div class="header__column">
+                    <h2 class="header__title"><slot name="title">Добавление товара</slot></h2>
+                </div>
+                
                 <slot name="undefined">
-                    <div class="header__column">
-                        <h1 class="header__title">Добавление товара</h1>
-                    </div>
-
                     <div class="header__column">
                         <!-- Создание поисковой строки -->
                         <my-input
                             v-model="searchQueryChild"
-                            :placeHolder="searchPlaceholder"
+                            :placeholder="searchPlaceholder"
                             :req="false"
                             class="header__search"
                         >
@@ -26,10 +26,28 @@
                         />
                     </div>
                 </slot>
-                <the-bucket
-                    class="header__column"
+                
+                <div class="header__column header__row">
+                    <router-link :to="{name:'goods'}" class="header__link">
+                    <h4>Список товаров</h4>
+                    </router-link>
+                    <router-link v-if="!userStore.userAuthorized" :to="{name:'auth'}" class="header__link">
+                        <h4>Авторизация</h4>
+                        <p>Неавторизован</p>
+                    </router-link>
+                    <button v-if="userStore.userAuthorized" @click="userStore.fetchLogOut" class="header__link">
+                        <p>{{ userStore.getUsersPersonalData.name }}</p>
+                        <img
+                            src="@/assets/images/icons/exit.svg"
+                            alt="Выйти"
+                        />
+                    </button>
+                    <the-bucket
+                    class="header__buket"
                     @click="router.push({ name: 'cartPage' })"
                 />
+                </div>
+                
             </div>
         </div>
     </header>
@@ -41,6 +59,9 @@ import MyInput from '@/components/UI/MyInput.vue'
 import TheBucket from '@/components/TheBucket.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
+import { useUserStore } from '@/store/myUser'
+const userStore = useUserStore()
+
 const emits = defineEmits(['inputSearch', 'selectSort'])
 
 const searchPlaceholder = 'Поиск ...'
@@ -138,6 +159,11 @@ const sortOptions = [
             margin-top: -14px;
             width: 100%;
         }
+    }
+    // .header__link
+    &__link{
+        margin: 0 20px;
+        cursor: pointer;
     }
 }
 </style>

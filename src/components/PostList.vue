@@ -3,10 +3,10 @@
     <div class="goods__content">
       <div v-if="goodsList.length > 0" class="goods__grid">
         <transition-group name="post-list">
-          <post-item
-            v-for="post in goodsList"
+          <post-item      
+          v-for="post in goodsList"
             :post="post"
-            :key="post.id"            
+            :key="post.id"
             @click-bye="cartStore.addToCartList"
           />
         </transition-group>

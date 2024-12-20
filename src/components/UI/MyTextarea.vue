@@ -17,7 +17,7 @@
             autocomplete="off"
             name="form[]"
             data-value=""
-            :placeholder="placeHolder"
+            :placeholder="placeholder"
             :data-error="dataError"
         >
         </textarea>
@@ -35,7 +35,7 @@ const props = defineProps({
         required: true,
         default: () => false,
     },
-    placeHolder: {
+    placeholder: {
         type: [String, Number],
         default: () => '',
     },

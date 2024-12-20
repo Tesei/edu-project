@@ -60,7 +60,7 @@ const props = defineProps({
         required: true,
     },
 })
-const count = computed(() => cartStore.cartList[props.item.title])
+const count = computed(() => cartStore.getCartList[props.item.title])
 const sum = computed(() => {
     let price = props.item.price
     if (typeof price === 'string') price = Number(price.replace(/[^0-9.]/gim, ''))
