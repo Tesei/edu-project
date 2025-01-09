@@ -73,7 +73,7 @@ export const useGoodsStore = defineStore(
                 price: '14 000',
             },
         ])
-        const defaultImageLink = "https://tesei.github.io/sites/mockUp's/polaroid.jpg"
+        const defaultImageLink = 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg'
 
         // Actions
         const fetchGoodsFromFakestore = async () => {

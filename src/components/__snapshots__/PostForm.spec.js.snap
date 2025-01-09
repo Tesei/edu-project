@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PostForm component > mounts without error 1`] = `
+"<aside data-v-52374430="" class="main__aside aside">
+  <div data-v-52374430="" class="aside__content">
+    <form data-v-52374430="" class="aside__form form">
+      <div data-v-52374430="" class="aside__forms">
+        <div data-v-2f46d669="" data-v-52374430="" class="form__line aside__forms-item" data-testid="title"><label data-v-2f46d669="" for="0.9459949896618856" class="form__label form__label_req"> Наименование товара </label><input data-v-2f46d669="" type="text" class="input _req" id="0.9459949896618856" autocomplete="off" name="name" data-value="" placeholder="Введите наименование товара" data-error="">
+          <!--v-if-->
+        </div>
+        <div data-v-35ce762b="" data-v-52374430="" class="form__line aside__forms-item"><label data-v-35ce762b="" for="0.0008887635054291021" class="form__label"> Описание товара </label><textarea data-v-35ce762b="" type="text" class="input" id="0.0008887635054291021" autocomplete="off" name="form[]" data-value="" placeholder="Введите описание товара" data-error="">        </textarea></div>
+        <div data-v-2f46d669="" data-v-52374430="" class="form__line aside__forms-item" data-testid="image-link"><label data-v-2f46d669="" for="0.9141517989685859" class="form__label form__label_req"> Ссылка на изображение товара </label><input data-v-2f46d669="" type="text" class="input _req _active" id="0.9141517989685859" autocomplete="off" name="name" data-value="" placeholder="Введите ссылку" data-error="">
+          <!--v-if-->
+        </div>
+        <!-- <my-checkbox
+                        class="aside__forms-checkbox"
+                        v-model="isStandartImage"
+                        >
+                        Применить стандартую картинку
+                    </my-checkbox> -->
+        <div data-v-2f46d669="" data-v-52374430="" class="form__line aside__forms-item" data-testid="price"><label data-v-2f46d669="" for="0.41301256582051527" class="form__label form__label_req"> Цена товара </label><input data-v-2f46d669="" type="text" class="input _req" id="0.41301256582051527" autocomplete="off" name="name" data-value="" placeholder="Введите цену" data-error="">
+          <!--v-if-->
+        </div>
+      </div>
+      <div data-v-43357113="" data-v-52374430="" class="button aside__button" type="submit"><button data-v-43357113="" type="submit" class="btn _active"> Добавить товар </button></div>
+    </form>
+  </div>
+</aside>"
+`;

@@ -33,7 +33,8 @@
 </template>
 
 <script setup>
-import {computed} from 'vue'
+import { computed } from 'vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()
 import { useRouter } from 'vue-router'

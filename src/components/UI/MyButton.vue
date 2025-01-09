@@ -3,7 +3,7 @@
         <button
             type="submit"
             class="btn"
-            :class="{'_active': hasAllData }"
+            :class="{ _active: hasAllData }"
             :disabled="!hasAllData"
         >
             <slot></slot>
@@ -11,27 +11,21 @@
     </div>
 </template>
 
-
-<script>
-
-export default {
-    name: 'my-button',
-    props: {
-        hasAllData: {
-            type: Boolean,
-            default: true,
-        }
-    }
-}
+<script setup>
+defineProps({
+    hasAllData: {
+        type: Boolean,
+        default: true,
+    },
+})
 </script>
-
 
 <style lang="scss" scoped>
 .btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #EEEEEE;
+    background: #eeeeee;
     border-radius: 10px;
     width: 100%;
     padding: 11px 0;
@@ -42,17 +36,17 @@ export default {
     line-height: 1.5rem;
     text-align: center;
     letter-spacing: -0.02em;
-    color: #B4B4B4;
+    color: #b4b4b4;
     transition: all 0.3s ease 0s;
 
     &._active {
-        color: #FFFFFF;
-        background: #7BAE73;
+        color: #ffffff;
+        background: #7bae73;
     }
 
     @media (min-width: $md2) {
         &:hover {
-            transform: scale(.97);
+            transform: scale(0.97);
         }
     }
 }

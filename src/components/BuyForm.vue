@@ -135,6 +135,7 @@ import { ref } from 'vue'
 import MyCheckbox from '@/components/ui/MyCheckbox.vue'
 import MyInput from '@/components/UI/MyInput.vue'
 import MyInputDate from '@/components/UI/MyInputDate.vue'
+import MyButton from '@/components/UI/MyButton.vue'
 
 import { useCartStore } from '@/store/cart'
 const cartStore = useCartStore()

@@ -12,6 +12,7 @@
                         :placeholder="'Введите наименование товара'"
                         :data-error="errors.title"
                         class="aside__forms-item"
+                        data-testid="title"
                     >
                         Наименование товара
                     </my-input>
@@ -32,6 +33,7 @@
                         :placeholder="'Введите ссылку'"
                         :data-error="errors.image"
                         class="aside__forms-item"
+                        data-testid="image-link"
                     >
                         Ссылка на изображение товара
                     </my-input>
@@ -49,6 +51,7 @@
                         :data-error="errors.price"
                         :oninpShow="true"
                         class="aside__forms-item"
+                        data-testid="price"
                     >
                         Цена товара
                     </my-input>
@@ -66,13 +69,11 @@
 </template>
 
 <script setup>
-// import MyCheckbox from '@/components/UI/MyCheckbox.vue'
 import MyInput from '@/components/UI/MyInput.vue'
 import MyTextarea from '@/components/UI/MyTextarea.vue'
-// import { onMounted, ref } from 'vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import { useGoodsStore } from '@/store/goods.js'
 const goodsStore = useGoodsStore()
-
 // Валидация
 import { useForm, useField } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -95,7 +96,7 @@ const { value: price } = useField('price')
 
 const onSubmit = handleSubmit((values) => {
     values.id = Date.now()
-    goodsStore.goods.push(values)
+    goodsStore.createPost(values)
 })
 
 </script>

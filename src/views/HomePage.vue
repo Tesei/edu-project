@@ -1,7 +1,7 @@
 <template>
     <the-header
-        @input-search="$event => (searchQuery = $event)"
-        @select-sort="$event => (selectedSort = $event)"
+        @input-search="($event) => (searchQuery = $event)"
+        @select-sort="($event) => (selectedSort = $event)"
     />
 
     <main class="main">
@@ -38,6 +38,7 @@ import { ref, computed, onBeforeMount } from 'vue'
 import TheHeader from '@/components/TheHeader.vue'
 import PostForm from '@/components/PostForm.vue'
 import PostList from '@/components/PostList.vue'
+import MyButton from '@/components/UI/MyButton.vue'
 import { useGoodsStore } from '@/store/goods.js'
 const goodsStore = useGoodsStore()
 
@@ -60,11 +61,9 @@ function openForm() {
     }
 }
 
-
 const searchQuery = ref('')
 const selectedSort = ref('')
 
-// todo доработать фильтрацию селекта
 const sortedPosts = computed(() => {
     if (selectedSort.value === 'price-from-max')
         return [...goodsStore.goodsList]
@@ -75,6 +74,7 @@ const sortedPosts = computed(() => {
             post1[selectedSort.value]?.localeCompare(post2[selectedSort.value]),
         )
 })
+// todo доработать фильтрацию селекта
 // const getSortTrips = computed(() => {
 //             if (sort.value === 'По убыванию') {
 //                 return trips.value.sort((a, b) => {
@@ -91,9 +91,9 @@ const sortedAndSearchedPosts = computed(() => {
     const serchText = searchQuery.value.toLowerCase()
     return sortedPosts.value.filter(
         (item) =>
-        item.title?.toLowerCase().includes(serchText) ||
-        item.description?.toLowerCase().includes(serchText) ||
-        String(item).price?.toLowerCase().includes(serchText),
+            item.title?.toLowerCase().includes(serchText) ||
+            item.description?.toLowerCase().includes(serchText) ||
+            String(item).price?.toLowerCase().includes(serchText),
     )
 })
 </script>

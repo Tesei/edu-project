@@ -53,6 +53,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useCartStore } from '@/store/cart'
+import MyButton from '@/components/UI/MyButton.vue'
 const cartStore = useCartStore()
 const totalSumOfGoodsWithSpace = computed(() => {
     return cartStore.getTotalSumOfGoods.toLocaleString('ru-RU')
