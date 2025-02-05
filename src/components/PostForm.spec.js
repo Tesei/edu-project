@@ -20,7 +20,7 @@ describe('PostForm component', () => {
         const wrapper = buildWrapper()
         expect(wrapper.exists).toBeTruthy()
     })
-    it("Test the vee-validate check", async () => {
+    it('Test the vee-validate check', async () => {
         const wrapper = buildWrapper()
         await wrapper.get('.aside__form').trigger('submit')
         await flushPromises()
@@ -52,8 +52,7 @@ describe('PostForm component', () => {
             .setValue('https://tesei.github.io/sites/mockUp\'s/polaroid.jpg')
         await wrapper.find('[data-testid="price"]').find('input').setValue('10000')
         await wrapper.get('.aside__form').trigger('submit')
-        await flushPromises()
-        
+        await flushPromises()        
         await waitForExpect(() => {
             expect(store.createPost).toHaveBeenCalledTimes(1)
         })

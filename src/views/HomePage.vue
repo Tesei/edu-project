@@ -43,7 +43,7 @@ import { useGoodsStore } from '@/store/goods.js'
 const goodsStore = useGoodsStore()
 
 onBeforeMount(async () => {
-    if (goodsStore.goods.length === 0) await goodsStore.fetchGoodsFromFakestore()
+    if (useGoodsStore().goods.length === 0) await useGoodsStore().fetchGoodsFromFakestore()
 })
 
 // открытие - закрытие формы и анимация

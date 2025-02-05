@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { reactive, computed, ref } from 'vue'
 import { useGoodsStore } from '@/store/goods'
-const goodsStore = useGoodsStore()
 import axios from 'axios'
 
 export const useCartStore = defineStore(
@@ -38,7 +37,7 @@ export const useCartStore = defineStore(
 
         const getTotalSumOfGoods = computed(() => {
             return Object.entries(cartList.value).reduce((acc, value) => {
-                let priceItem = goodsStore.goods.find((item) => item.title === value[0])?.price
+                let priceItem = useGoodsStore().goods.find((item) => item.title === value[0])?.price
                 if (typeof priceItem === 'string') priceItem = priceItem.replace(/[^0-9.]/gim, '')
                 return +priceItem * value[1] + acc
             }, 0)

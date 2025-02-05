@@ -24,7 +24,7 @@
 			<div class="card__about" @click="router.push({name: 'itemPage', params: {id: post.id}})"      >
 				<span class="card__title">{{ post.title }}</span>
 				<span class="card__text">{{ post.description }}</span>
-				<span class="card__price">{{ setSpaceInPrice(post.price) }} <span> руб.</span></span>
+				<span class="card__price">{{ setSpaceInPrice(post.price) }}<span> руб.</span></span>
 				<my-button class="card__btn" @click.stop="$emit('click-bye', post)">{{ hasInCart }}</my-button>
 			</div>
 		</div>
@@ -35,10 +35,10 @@
 <script setup>
 import { computed } from 'vue'
 import MyButton from '@/components/UI/MyButton.vue'
-import { useCartStore } from '@/store/cart'
-const cartStore = useCartStore()
 import { useRouter } from 'vue-router'
 const router = useRouter()
+import { useCartStore } from '@/store/cart.js'
+const cartStore = useCartStore()
 
 const props = defineProps({
     post: {

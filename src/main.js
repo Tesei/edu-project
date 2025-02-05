@@ -1,17 +1,21 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createPinia, setActivePinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import router from '@/router'
 import App from './App.vue'
-import components from '@/components/UI/index.js'
 
 const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
-const app = createApp(App)
 
+const app = createApp(App)
+app
+.use(pinia)
+.use(router)
+setActivePinia(pinia)
+pinia.use(piniaPluginPersistedstate)
+
+app.mount('#app')
+
+import components from '@/components/UI/index.js'
 components.forEach((component) => {
     app.component(component.name, component)
 })
-app.use(pinia)
-app.use(router)
-app.mount('#app')

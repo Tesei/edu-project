@@ -22,6 +22,7 @@
                             <my-input-password
                                 v-model="password"
                                 placeholder="Пароль"
+                                name="password"
                                 class="auth__input"
                                 :data-error="errors.password"
                             >Пароль</my-input-password>
@@ -65,7 +66,6 @@ const { value: password } = useField('password')
 
 const onSubmit = handleSubmit((values) => {
     userStore.fetchLogIn(values)
-    console.log('value',values)
     if(userStore.userAuthorized) router.push({ name: 'goods' })
 })
 </script>

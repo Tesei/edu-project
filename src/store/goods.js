@@ -79,7 +79,7 @@ export const useGoodsStore = defineStore(
         const fetchGoodsFromFakestore = async () => {
             try {
                 let { data } = await axios.get('https://fakestoreapi.com/products', {
-                    timeout: 4000,
+                    timeout: 5000,
                 })
                 //         {
                 //     "id": 1,
@@ -109,6 +109,7 @@ export const useGoodsStore = defineStore(
 
         return {
             fetchGoodsFromFakestore,
+            defaultGoods,
             goods,
             defaultImageLink,
             createPost,
