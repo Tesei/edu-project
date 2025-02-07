@@ -81,7 +81,7 @@ import { object, string, any } from 'zod'
 
 const validationSchema = toTypedSchema(
     object({
-        title: string({ message: 'Обязательное поле' }).min(3, { message: 'Обязательное поле' }),
+        title: string().min(3, { message: 'Обязательное поле' }),
         description: any(),
         image: string({ message: 'Обязательное поле' }).default(goodsStore.defaultImageLink),
         price: string({ message: 'Ввести число' }),

@@ -9,6 +9,7 @@
             </label>
             <input
                 class="input"
+                :class="{ _req: isRequired, _active: inputValue, _error: dataError }"
                 v-model="internalValue"
                 :type="showPassword ? 'text' : 'password'"
                 :placeholder="placeholder"
@@ -74,6 +75,18 @@ const togglePasswordVisibility = () => {
 </script>
 
 <style lang="scss" scoped>
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus {
+        outline: none;
+    }
+}
 
 .input__svg-eye {
     position: absolute;

@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest'
-// import { setActivePinia, createPinia } from 'pinia'
 import { mount } from '@vue/test-utils'
 import component from './PostItem.vue'
 import { createTestingPinia } from '@pinia/testing'
@@ -9,11 +8,6 @@ import flushPromises from 'flush-promises'
 import waitForExpect from 'wait-for-expect'
 
 describe('PostItem component', () => {
-    // beforeEach(() => {
-    //     setActivePinia(createPinia())
-    //     const store = useCartStore()
-    //     store.cartList['Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'] = 1
-    // })
     
     const buildWrapper = (stubActions = true) => {
         return mount(component, {

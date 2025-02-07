@@ -14,14 +14,14 @@
                         <template #default>
                             <my-input
                                 v-model.trim="login"
-                                placeholder="Логин"
+                                placeholder="Логин = 1"
                                 class="auth__input"
                                 name="name"
                                 :data-error="errors.login"
                             >Логин</my-input>
                             <my-input-password
                                 v-model="password"
-                                placeholder="Пароль"
+                                placeholder="Пароль = 1 "
                                 name="password"
                                 class="auth__input"
                                 :data-error="errors.password"
@@ -55,8 +55,8 @@ import { object, string } from 'zod'
 
 const validationSchema = toTypedSchema(
     object({
-        login: string({ message: 'Обязательное поле' }).default('1'),
-        password: string({ message: 'Обязательное поле' }).default('1'),
+        login: string().min(1, { message: 'Обязательное поле' }),
+        password: string().min(1, { message: 'Обязательное поле' }),
     }),
 )
 
@@ -64,9 +64,10 @@ const { handleSubmit, errors } = useForm({ validationSchema })
 const { value: login } = useField('login')
 const { value: password } = useField('password')
 
-const onSubmit = handleSubmit((values) => {
-    userStore.fetchLogIn(values)
-    if(userStore.userAuthorized) router.push({ name: 'goods' })
+const onSubmit = handleSubmit((values) => {    
+    // userStore.fetchLogIn(values)
+    // if (userStore.userAuthorized)
+    router.push({ name: 'goods' })
 })
 </script>
 
