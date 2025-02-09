@@ -47,6 +47,7 @@ export const useCartStore = defineStore(
         })
 
         const hasDelivery = ref(false)
+        const getDelveryFlag = computed(() => hasDelivery.value)
         function changeDelivery() {
             hasDelivery.value = !hasDelivery.value
         }
@@ -102,6 +103,7 @@ export const useCartStore = defineStore(
             loadSavedUserData,
             savedCartLists,
             cartList,
+            getDelveryFlag
         }
     },
     { persist: true },

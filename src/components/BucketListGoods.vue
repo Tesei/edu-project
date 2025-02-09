@@ -34,7 +34,7 @@
 	id="installationCheck"
 	class="installation__check-input"
 	type="checkbox"
-	:value="cartStore.hasDelivery"
+	:value="cartStore.getDelveryFlag"
 	@change="cartStore.changeDelivery"
 >
 <label
@@ -42,14 +42,14 @@
 	for="installationCheck"
 ></label>
 
-<div class="installation__image-wrap">
+<div class="installation__image-wrap" @click="cartStore.changeDelivery">
 	<img
 		src="@/assets/images/icons/tools.svg"
 		alt="installation"
 		class="installation__image"
 	>
 </div>
-<div class="installation__text">
+<div class="installation__text" @click="cartStore.changeDelivery">
 	<span class="installation__title">Доставка</span>
 	<span class="installation__about">Отметьте, если Вам необходима доставка товаров</span>
 </div>

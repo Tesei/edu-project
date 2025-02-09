@@ -13,7 +13,7 @@ export default defineConfig({
         //     reporter:['text', 'json', 'html'] // change this property to the desired output
         // }
     },
-    root: '.',
+    root: './src',
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),

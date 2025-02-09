@@ -15,6 +15,7 @@ test('test', async ({ page }) => {
     await page.locator(':nth-match(:text("В корзину"), 2)').click()
     
     await page.getByRole('img', { name: 'корзина товаров' }).click()
+    
     await page.locator('label').click()
     await page.getByRole('button', { name: 'Оформить заказ' }).click()
     await page.getByRole('textbox', { name: 'Введите ваше ФИО' }).click()

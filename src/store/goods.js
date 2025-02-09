@@ -10,7 +10,7 @@ export const useGoodsStore = defineStore(
         const defaultGoods = ref([
             {
                 id: 1,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара',
                 description:
                     '3 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
@@ -18,7 +18,7 @@ export const useGoodsStore = defineStore(
             },
             {
                 id: 2,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара 2',
                 description:
                     '2 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
@@ -26,7 +26,7 @@ export const useGoodsStore = defineStore(
             },
             {
                 id: 3,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара 3',
                 description:
                     '1 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
@@ -34,7 +34,7 @@ export const useGoodsStore = defineStore(
             },
             {
                 id: 4,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара 4',
                 description:
                     '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
@@ -42,7 +42,7 @@ export const useGoodsStore = defineStore(
             },
             {
                 id: 5,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара 5',
                 description:
                     '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
@@ -50,7 +50,7 @@ export const useGoodsStore = defineStore(
             },
             {
                 id: 6,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара 6',
                 description:
                     '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
@@ -58,7 +58,7 @@ export const useGoodsStore = defineStore(
             },
             {
                 id: 7,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара 7',
                 description:
                     '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
@@ -66,7 +66,7 @@ export const useGoodsStore = defineStore(
             },
             {
                 id: 8,
-                image: "https://tesei.github.io/sites/mockUp's/polaroid.jpg",
+                image: 'https://tesei.github.io/sites/mockUp\'s/polaroid.jpg',
                 title: 'Наименование товара 7',
                 description:
                     '4 Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',

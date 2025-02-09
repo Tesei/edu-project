@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`PostItem component > mounts without error 1`] = `
-"<article data-v-cf937a3e="" class="goods__item card">
+"<article data-v-e21999db="" class="goods__item card">
   <!-- <div
 			class="card__bucket"
 			@click="$emit('remove', post)"
@@ -14,10 +14,10 @@ exports[`PostItem component > mounts without error 1`] = `
 				>
 			</div>
 		</div> -->
-  <div data-v-cf937a3e="" class="card__content">
-    <div data-v-cf937a3e="" class="card__picture _ibg"><img data-v-cf937a3e="" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Изображние товара" class="card__img"></div>
-    <div data-v-cf937a3e="" class="card__about"><span data-v-cf937a3e="" class="card__title">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</span><span data-v-cf937a3e="" class="card__text">Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday</span><span data-v-cf937a3e="" class="card__price">1&nbsp;009,95<span data-v-cf937a3e=""> руб.</span></span>
-      <div data-v-43357113="" data-v-cf937a3e="" class="button card__btn"><button data-v-43357113="" type="submit" class="btn _active">В корзину</button></div>
+  <div data-v-e21999db="" class="card__content">
+    <div data-v-e21999db="" class="card__picture _ibg"><img data-v-e21999db="" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Изображние товара" class="card__img"></div>
+    <div data-v-e21999db="" class="card__about"><span data-v-e21999db="" class="card__title">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</span><span data-v-e21999db="" class="card__text">Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday</span><span data-v-e21999db="" class="card__price">1&nbsp;009,95<span data-v-e21999db=""> руб.</span></span>
+      <div data-v-8ee70a59="" data-v-e21999db="" class="button card__btn"><button data-v-8ee70a59="" type="submit" class="btn _active">В корзину</button></div>
     </div>
   </div>
 </article>"

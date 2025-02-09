@@ -49,14 +49,14 @@ const props = defineProps({
 defineEmits(['click-bye'])
 
 const hasInCart = computed(() => {
-	return cartStore.getCartList[props.post.title]
-		? 'В корзине ' + cartStore.getCartList[props.post.title]
-		: 'В корзину'
+    return cartStore.getCartList[props.post.title]
+        ? 'В корзине ' + cartStore.getCartList[props.post.title]
+        : 'В корзину'
 })
 
 function setSpaceInPrice(price) {
-	let newPrice = price
-	if (typeof price === 'string') newPrice = price.replace(/[^0-9.]/gim, '')
+    let newPrice = price
+    if (typeof price === 'string') newPrice = price.replace(/[^0-9.]/gim, '')
     return (+newPrice).toLocaleString('ru-RU')
 }
 
