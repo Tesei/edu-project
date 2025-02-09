@@ -46,10 +46,12 @@ const props = defineProps({
         required: true
     }
 })
+defineEmits(['click-bye'])
 
 const hasInCart = computed(() => {
-    if (Object.prototype.hasOwnProperty.call(cartStore.getCartList, props.post.title)) return 'В корзине ' + cartStore.getCartList[props.post.title]
-    else return 'В корзину'
+	return cartStore.getCartList[props.post.title]
+		? 'В корзине ' + cartStore.getCartList[props.post.title]
+		: 'В корзину'
 })
 
 function setSpaceInPrice(price) {

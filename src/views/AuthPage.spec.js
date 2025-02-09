@@ -1,46 +1,26 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import flushPromises from 'flush-promises'
 import waitForExpect from 'wait-for-expect'
 import { useUserStore } from '@/store/myUser.js'
 import component from './AuthPage.vue'
+import { useRouter, useRoute } from 'vue-router'
 
-import { routes } from '@/router'
-import { createRouter, createWebHistory } from 'vue-router'
-
-// import { useRouter } from 'vue-router'
-// const router = createRouter({
-//     history: createWebHistory(),
-//     routes: [
-//         { path: '/goods', name: 'goods', component: () => import('@/views/HomePage.vue') },
-//     ],
-// })
+vi.mock('vue-router', () => ({
+    useRoute: vi.fn(),
+    useRouter: vi.fn(() => ({
+        push: () => {},
+    })),
+}))
 
 describe('AuthPage component', () => {
-    const router = createRouter({
-        history: createWebHistory(),
-        routes: routes,
-    })
-    beforeEach(async () => {
-        router.push('/')
-        await router.isReady()
-    })
-
-    // vi.mock('vue-router')
-    // const pushReplacement = vi.fn()
-    // useRouter.mockImplementation(() => ({
-    //     name: pushReplacement,
-    // }))
-    // const mockRouter = {
-    //     push: vi.fn()
-    // }
     // ? stubActions указывает будут ли создаваться полноценные сущности стора
     const buildWrapper = (stubActions = false) => {
         return mount(component, {
             global: {
-                plugins: [createTestingPinia({ stubActions }), router],
-                // mocks: mockRouter, // Mock router if needed
+                stubs: ['router-link', 'router-view'], // Stubs for router-link and router-view in case they're rendered in your template
+                plugins: [createTestingPinia({ stubActions })],
             },
         })
     }
@@ -57,47 +37,40 @@ describe('AuthPage component', () => {
         await loginInput.setValue('')
         await passwordInput.setValue('')
         await wrapper.get('form').trigger('submit') // ? working !
-        
+
         await flushPromises()
         await waitForExpect(() => {
             expect(wrapper.find('.form__error')).toBeTruthy()
         })
     })
 
-    it('check routs', async () => {
+    // Пример тестирования с замоканым роутом
+    it('redirect an correct goods page', async () => {
+        //   useRoute.mockImplementationOnce(() => ({
+        //     params: {
+        //       id: 1
+        //     }
+        //   }))
+        const push = vi.fn()
+        useRouter.mockImplementationOnce(() => ({
+            push,
+        }))
+
         const wrapper = buildWrapper(true)
-        // const store = useUserStore() // ? должно стоять после wrapper
+        const store = useUserStore() // ? должно стоять после wrapper
+        store.userAuthorized = true
+
         const loginInput = wrapper.find('input[name="name"]')
         const passwordInput = wrapper.find('input[name="password"]')
-        
+
         await loginInput.setValue('1')
         await passwordInput.setValue('1')
         await wrapper.get('form').trigger('submit') // working !
-        
+
         await flushPromises()
         await waitForExpect(() => {
-            // expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(1)
-            expect(router.push).toHaveBeenCalledTimes(1)
-            // expect(router.push).toHaveBeenCalledWith( {"name":"goods","params":{}})
+            expect(push).toHaveBeenCalledTimes(1)
+            expect(push).toHaveBeenCalledWith({ name: 'goods' })
         })
     })
 })
-
-        // it('calls fetchLogIn with correct arguments when fields are filled', async () => {
-        //     const wrapper = buildWrapper(true)
-        //     const store = useUserStore() // ? должно стоять после wrapper
-        //     const loginInput = wrapper.find('input[name="name"]')
-        //     const passwordInput = wrapper.find('input[name="password"]')
-    
-        //     await loginInput.setValue('1')
-        //     await passwordInput.setValue('1')
-        //     await wrapper.get('form').trigger('submit') // working !
-    
-        //     await flushPromises()
-        //     await waitForExpect(() => {
-        //         expect(store.fetchLogIn).toHaveBeenCalledTimes(1)
-        //         expect(store.fetchLogIn).toHaveBeenCalledWith({ login: '1', password: '1' })
-        //         // expect($router.push).toHaveBeenCalledTimes(1)
-        //         // expect(router.push).toHaveBeenCalledWith({ name: 'goods' })
-        //     })
-        // })

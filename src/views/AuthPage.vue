@@ -65,9 +65,8 @@ const { value: login } = useField('login')
 const { value: password } = useField('password')
 
 const onSubmit = handleSubmit((values) => {    
-    // userStore.fetchLogIn(values)
-    // if (userStore.userAuthorized)
-    router.push({ name: 'goods' })
+    userStore.fetchLogIn(values)
+    if (userStore.userAuthorized) router.push({ name: 'goods' })
 })
 </script>
 
